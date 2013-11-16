@@ -1,0 +1,201 @@
+/*** SHADOWS -> ***/
+.shadow, #currencies, #languages, .loginForm, .altLoginBox, .flyoutMenu {
+    -moz-box-shadow: 2px 2px 5px #666;
+    -webkit-box-shadow: 2px 2px 5px #666;
+    box-shadow: 2px 2px 5px #666;
+}
+
+.bottomShadow, .box h3, .box h2, .pageHead, .sectionHead {
+    -moz-box-shadow: 0px 3px 5px -1.3px #555;
+    -webkit-box-shadow: 0px 3px 5px -1.3px #555;
+    box-shadow: 0px 3px 5px -2px #555;
+}
+
+.basketFlyout {
+    -moz-box-shadow: 0px 0px 3px 1px #555;
+    -webkit-box-shadow: 0px 0px 3px 1px #555;
+    box-shadow: 0px 0px 3px 1px #555;
+}
+
+.scrollable ul {
+    -moz-box-shadow: inset 0px 5px 5px -1.3px #555;
+    -webkit-box-shadow: 0px 5px 5px -1.3px #555;
+    box-shadow: 0px 5px 5px -1.3px #555;
+}
+
+.basketItems {
+    -moz-box-shadow: inset 0px -4px 2px -2px #555;
+    -webkit-box-shadow: 0px -4px 3px -2px #555;
+    box-shadow: 0px -4px 5px -2px #555;
+}
+
+.glowShadow, div.anythingSlider .arrow, .promoBox {
+    -moz-box-shadow: 1px 1px 9px 1px #000;
+    -webkit-box-shadow: 1px 1px 9px 2px #000;
+    box-shadow: 1px 1px 9px 2px #000;
+}
+
+.lightGlowShadow, .promoBox {
+    -moz-box-shadow: 1px 1px 6px 1px #222;
+    -webkit-box-shadow: 1px 1px 6px 2px #222;
+    box-shadow: 1px 1px 6px 2px #222;
+}
+
+.rightShadow, .itemSlider .prevItem {
+    -webkit-box-shadow: 4px 0px 4px -1.5px #555555;
+    -moz-box-shadow: 4px 0px 4px -1.5px #555555;
+    box-shadow: 4px 0px 4px -1.5px #555555;
+}
+
+.leftShadow, .itemSlider .nextItem {
+    -webkit-box-shadow: -4px 0px 4px -1.5px #555555;
+    -moz-box-shadow: -4px 0px 4px -1.5px #555555;
+    box-shadow: -4px 0px 4px -1.5px #555555;
+}
+
+/******/
+/*** ROUNDED CORNERS -> ***/
+.corners, .button, .input, .textbox, .areabox, .checkbox, .submitButton, .pictureView, .widgetBox, .dropDown ul, div.anythingSlider .arrow, .promoBox {
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -khtml-border-radius: 4px;
+    border-radius: 4px;
+}
+
+.input, .textbox, .pager .active, .lineBox, .areabox, input[type="text"] {
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -khtml-border-radius: 2px;
+    border-radius: 2px;
+}
+
+.box ul, .box ol, .box .content {
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -khtml-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.topRound, .tabs li, .thumbNav, #navigation ul li:first-child, #currencies li:first-child a, #languages li:first-child a, .flyoutMenu li:first-child a, .dropDown li:first-child a {
+    -moz-border-radius: 3px 3px 0px 0px;
+    -webkit-border-radius: 3px 3px 0px 0px;
+    -khtml-border-radius: 3px 3px 0px 0px;
+    border-radius: 3px 3px 0px 0px;
+}
+
+#currencies li:last-child a, #languages li:last-child a, .dropDown li:last-child a, .flyoutMenu li:last-child a {
+    -moz-border-radius: 0px 0px 3px 3px;
+    -webkit-border-radius: 0px 0px 3px 3px;
+    -khtml-border-radius: 0px 0px 3px 3px;
+    border-radius: 0px 0px 3px 3px;
+}
+
+.bottomRound, #navigation ul li:last-child, .widgetBoxBottomRound {
+    -moz-border-radius: 0px 0px 3px 3px;
+    -webkit-border-radius: 0px 0px 3px 3px;
+    -khtml-border-radius: 0px 0px 3px 3px;
+    border-radius: 0px 0px 3px 3px;
+}
+
+.leftRound, .promoBox strong.promoPrice {
+    -moz-border-radius: 3px 0px 0px 3px;
+    -webkit-border-radius: 3px 0px 0px 3px;
+    -khtml-border-radius: 3px 0px 0px 3px;
+    border-radius: 3px 0px 0px 3px;
+}
+
+.rightRound, .promoBox strong.promoTitle {
+    -moz-border-radius: 0px 3px 3px 0px;
+    -webkit-border-radius: 0px 3px 3px 0px;
+    -khtml-border-radius: 0px 3px 3px 0px;
+    border-radius: 0px 3px 3px 0px;
+}
+
+/******/
+/*** GRADIENTS -> ***/
+/* Blue */
+.FXgradBlue,.gridView .titleBox,.gridView .priceBox, .box h3, .box h2, .sectionHead, .pageHead, #currencies a.selected, #languages a.selected, .flyoutMenu a.selected, .dropDown a.selected, .thumbNav a.cur, .thumbNav a.cur:hover, .promoBox strong.promoPrice, .itemSlider .prevItem, .itemSlider .nextItem, .specBox h3{
+    background: #59b2c7 url(../bg/svg/grad_blue.svg);
+    background: -moz-linear-gradient(bottom, #18778e, #389cb4, #adefff);
+    background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #18778e), color-stop(50%, #389cb4), color-stop(100%, #adefff));
+    -pie-background: linear-gradient(90deg, #18778E, #a9edfd);
+}
+
+.FXgradBlueLight,
+.lightHead,
+h2.lightHead,
+h3.lightHead {
+    background: #429db3 url(../bg/svg/grad_blue-light.svg);
+    background: -moz-linear-gradient(top, #e0f1f5, #b8dde6);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #e0f1f5), color-stop(100%, #b8dde6));
+    -pie-background: linear-gradient(90deg, #b8dde6, #e0f1f5);
+}
+
+.FXgradBlueDark,
+.submitButton {
+    background: #429db3 url(../bg/svg/grad_blue-dark.svg);
+    background: -moz-linear-gradient(top, #5fb7cc, #1a7990);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #5fb7cc), color-stop(100%, #1a7990));
+    -pie-background: linear-gradient(90deg, #1a7990, #5FB7CC);
+}
+
+
+
+/* Grey */
+.FXgradGrey,
+.promoBox strong.promoTitle,
+.specBoxTitles a.title{
+    background: #d1d8db url(../bg/svg/grad_grey.svg);
+    background: -moz-linear-gradient(top,  #f9fafa, #a9b1b4);
+    background: -webkit-gradient(linear, left top, left bottom, from(#f9fafa), to(#a9b1b4));
+    -pie-background: linear-gradient(90deg, #a9b1b4, #f9fafa);
+}
+
+
+.FXgradGreyLight,
+.sf-menu li ul,
+#footer #panel,
+.box ul,
+.box ol,
+.box .content,
+.loginForm,
+#currencies a,
+#languages a,
+.flyoutMenu a,
+.basketFlyout,
+div.anythingSlider .arrow,
+.thumbNav{
+    background: #d1d8db url(../bg/svg/grad_grey-light.svg);
+    background: -moz-linear-gradient(top,  #ffffff, #d1d8db);
+    background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#d1d8db));
+    -pie-background: linear-gradient(90deg, #d1d8db, #ffffff);
+}
+
+/* Orange */
+.FXgradOrange,
+.removeButton,
+.sf-menu li.sfHover, .sf-menu li:hover,
+.gridView div.priceBox:hover,
+.gridView div.titleBox:hover,
+.featuredList a:hover,
+.featuredList li.articleImage:hover + li.articleTitle > a,
+#footer .list a:hover,
+#currencies a:hover,
+#languages a:hover,
+.flyoutMenu a:hover,
+.submitButton:hover,
+.basketFlyout li a:hover,
+.dropDown ul a:hover,
+div.anythingSlider span.arrow:hover,
+.thumbNav a:hover,
+.slideNav:hover,
+a.viewAllHover,
+.itemSlider li a.viewAllHover,
+.specBoxTitles a.title:hover,
+.actionLinks li:hover {
+    background: #ec6105 url("../bg/svg/grad_orange.svg");
+    background: -moz-linear-gradient(top,  #ff8604, #ec6105);
+    background: -webkit-gradient(linear, left top, left bottom, from(#ff8604), to(#ec6105));
+    -pie-background: linear-gradient(90deg, #ec6105, #ff8604);
+}
+/******/

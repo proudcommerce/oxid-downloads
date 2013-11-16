@@ -1,0 +1,118 @@
+body {
+    font: 12px / 140% arial, helvetica, clean, sans-serif;
+    background: #FFF;
+}
+
+select, input, button, textarea, button {
+    font: 99% arial, helvetica, clean, sans-serif;
+}
+
+table {
+    font-size: inherit;
+    font: 100%;
+}
+
+h1 {
+    font-size: 18px;
+}
+
+h2 {
+    font-size: 16px;
+}
+
+h3 {
+    font-size: 14px;
+}
+
+h2, h3, h4, h5 {
+    margin-bottom: 10px;
+}
+
+h1, h2, h3, h4, h5, h6, b, strong, dt {
+    font-weight: bold;
+}
+
+optgroup {
+    font-weight: normal;
+}
+
+i, em {
+    font-style: italic;
+}
+
+del {
+    text-decoration: line-through;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+ul, ol {
+    margin: 25px 30px;
+}
+
+li {
+    padding: 3px 0;
+    list-style: square;
+}
+
+ol li {
+    list-style: decimal;
+}
+
+p {
+    margin-bottom: 15px;
+}
+
+ul, ol {
+    margin: 20px 30px;
+}
+
+ul ul, ol ul {
+    margin: 10px 20px;
+}
+
+ol li {
+    list-style-type: decimal;
+    list-style-position: inside;
+}
+
+ol ol {
+    list-style: upper-alpha;
+}
+
+ol ol ol {
+    list-style: lower-roman;
+}
+
+ol ol ol ol {
+    list-style: lower-alpha;
+}
+
+ul li {
+    list-style: square;
+}
+
+ul li li {
+    list-style: square;
+}
+
+form ul {
+    margin: 0;
+    padding: 0;
+}
+
+form ol {
+    margin: 0;
+    padding: 0;
+}
+
+form li {
+    list-style: none;
+}

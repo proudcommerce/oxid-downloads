@@ -1,0 +1,363 @@
+.wrapping {
+    border-color: #666;
+    overflow: hidden;
+}
+
+.wrappingIntro img, .wrappingIntro .introtext {
+    float: left;
+}
+
+.wrappingIntro .introtext {
+    padding: 15px 0 0 20px;
+    width: 290px;
+}
+
+.wrapping h3 {
+    border-color: #a2a9ab;
+    padding-left: 5px;
+    text-transform: uppercase;
+}
+
+.wrappingData td {
+    vertical-align: top;
+    padding: 10px 15px 10px 0;
+    border-bottom: 5px solid #fff;
+}
+
+.wrappingData tr:last-child td {
+    border-bottom: none;
+}
+
+.wrappingData span, .wrappingData strong, .wrappingData input, .wrappingData label {
+    float: left;
+}
+
+.wrappingData span {
+    width: 95px;
+    height: 55px;
+    margin: 0 15px 0 0;
+    overflow: hidden;
+}
+
+.wrappingData label {
+    font-size: 14px;
+    width: 155px;
+}
+
+.wrappingData strong {
+    float: right;
+}
+
+.wrappingData li {
+    padding: 5px 0;
+}
+
+.wrappingData li:first-child {
+    padding-top: 0;
+}
+
+.wrapping .radiobox {
+    margin: 1px 5px 0 0;
+}
+
+.wrappingCard li {
+    float: left;
+    min-height: 150px;
+    padding-left: 20px;
+}
+
+.wrappingCard label, .wrappingCard input {
+    float: left;
+}
+
+.wrappingCard li:first-child {
+    padding-left: 0;
+}
+
+.wrappingCard p {
+    margin-bottom: 5px;
+}
+
+.wrapping .areabox {
+    width: 646px;
+    margin-bottom: 10px;
+}
+
+.wrappingComment label {
+    display: block;
+    text-transform: uppercase;
+    padding: 3px 5px;
+}
+
+.wrapping .submitForm {
+    padding-bottom: 15px;
+}
+
+.wrapping .submitForm button {
+    float: right;
+    margin-left: 10px;
+}
+
+.wrapping .textButton {
+    margin-top: 2px;
+}
+
+.checkoutSteps {
+    margin: 0;
+    overflow: hidden;
+    border-left: 1px solid #999;
+}
+
+.checkoutSteps + .status, .checkoutSteps + css3-container + .status {
+    margin-top: 20px;
+}
+
+.checkoutSteps li {
+    list-style: none;
+    padding: 0;
+    float: left;
+    height: 29px;
+    width: 20%;
+    text-transform: uppercase;
+    line-height: 29px;
+    position: relative;
+    left: 0;
+    margin-left: -15px;
+    padding-left: 15px;
+    background: url(../img/steps.png) no-repeat 100% 0;
+}
+
+.checkoutSteps li.active {
+    background-position: 100% -29px;
+    color: #fff;
+}
+
+.checkoutSteps li.active a {
+    color: #fff;
+}
+
+.checkoutSteps li.active a:hover {
+    text-decoration: none;
+}
+
+.checkoutSteps span {
+    padding-left: 10px;
+}
+
+.checkoutSteps li.step1 {
+    z-index: 5;
+}
+
+.checkoutSteps li.step2 {
+    z-index: 4;
+}
+
+.checkoutSteps li.step3 {
+    z-index: 3;
+}
+
+.checkoutSteps li.step4 {
+    z-index: 2;
+}
+
+.checkoutSteps li.step5 {
+    z-index: 1;
+}
+
+.checkoutOptions .option {
+    width: 278px;
+    float: left;
+    margin-right: 20px;
+    background-color: #f2f4f5;
+}
+
+.checkoutOptions .option:last-child {
+    margin-right: 0;
+}
+
+.checkoutCollumns .row {
+    margin-bottom: 20px;
+}
+
+.checkoutCollumns .collumn {
+    width: 50%;
+    float: left;
+}
+
+.basket {
+    margin: 0px 10px;
+}
+
+.basketitems {
+    width: 100%;
+    font-size: 14px;
+}
+
+.basketitems td {
+    vertical-align: top;
+    border-top: 5px solid #ECEFF0;
+    padding-top: 6px;
+}
+
+.basketitems tr:last-child td {
+    border-bottom: 5px solid #ECEFF0;
+}
+
+.basketitems th {
+    font-size: 12px;
+    text-align: left;
+    color: #515353;
+    padding-bottom: 2px;
+    font-weight: 400;
+    vertical-align: top;
+    border-bottom: 5px solid #ECEFF0;
+}
+
+.basketitems tr td:last-child, .basketitems tr th:last-child {
+    text-align: right;
+    padding-right: 5px;
+}
+
+.basketitems td.basketImage {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.basketitems tr.basketError td {
+    padding-top: 0;
+    padding-bottom: 10px;
+    border: none;
+}
+
+.basketitems .picture {
+    width: 130px;
+    height: 160px;
+    overflow: hidden;
+    border: 1px solid #555555;
+}
+
+.basketitems .wrappingTrigger {
+    color: #1D7E96;
+}
+
+.wrappingTrigger span {
+    display: block;
+    color: #555;
+    font-size: 11px;
+}
+
+.wrappingTrigger:hover span {
+    text-decoration: underline;
+}
+
+.basketitems .checkbox {
+    vertical-align: middle;
+}
+
+.basketitems .textbox {
+    width: 20px;
+    text-align: right;
+}
+
+.basketitems .persParam {
+    width: 120px;
+    text-align: left;
+}
+
+.quantity strong {
+    display: block;
+    font-size: 11px;
+    margin-bottom: 3px;
+}
+
+.quantity p {
+    margin-bottom: 5px;
+}
+
+.quantity {
+    white-space: nowrap;
+    padding-right: 10px;
+}
+
+.updateBasket {
+    width: 640px;
+    float: left;
+    padding-top: 15px;
+}
+
+.summary {
+    font-size: 14px;
+    width: 350px;
+    float: right;
+    padding-top: 15px;
+}
+
+.summary table {
+    width: 100%;
+}
+
+.summary table td {
+    text-align: right;
+    width: 90px;
+    padding: 5px 5px 5px 2px;
+    border-top: 2px solid #ECEFF0;
+}
+
+.summary table td {
+    text-align: right;
+    width: 90px;
+    padding: 5px 5px 5px 2px;
+    border-bottom: 1px solid #ECEFF0;
+}
+
+.summary table th {
+    text-align: left;
+    font-weight: 400;
+    border-top: 2px solid #ECEFF0;
+}
+
+.summary table tr:last-child td, .summary table tr:last-child th {
+    border-top-color: #c9d3d7;
+    border-bottom-width: 0px;
+    font-weight: 700;
+}
+
+.summary table tr:first-child td, .summary table tr:first-child th {
+    border-top-width: 0;
+}
+
+.backtoshop {
+    float: left;
+    padding-left: 10px;
+}
+
+.nextStep {
+    float: right;
+}
+
+.basketFunctions {
+    float: left;
+    padding-top: 20px;
+}
+
+.basketFunctions button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #1d7e96;
+    padding: 0;
+    height: 14px;
+    line-height: 14px;
+}
+
+.basketFunctions span {
+    border-right: 1px solid #1d7e96;
+    padding: 0 9px 0 0;
+    float: left;
+    line-height: 12px;
+    height: 12px;
+}
+
+#orderAddress, #orderShipping, #orderPayment {
+    margin-bottom: 35px;
+}

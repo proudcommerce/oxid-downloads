@@ -1,0 +1,68 @@
+#header, #banner, #sidebar, #content, #footer {
+    margin: 10px;
+}
+
+#header, #banner, #footer {
+    clear: left;
+}
+
+#page:after, .flyout p:after, #header:after, #banner:after, #footer:after, #footer #panel:after, #details .locator:after, #details .description-box div:after, #details .more-description-box div:after, #details div.morepic-box:after, #details div.tab-container:after, #details div.title-box:after, #details #attributes table:after, ul.select li:after, #navigation:after {
+    clear: both;
+    content: ' ';
+    display: block;
+    font-size: 0;
+    line-height: 0;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+}
+
+#page {
+    width: 960px;
+    margin: 0 auto;
+}
+
+#header {
+    width: 940px;
+    padding: 0 10px;
+    height: 115px;
+    margin: 0;
+    position: relative;
+}
+
+#banner {
+    width: 960px;
+    margin: 10px 0;
+}
+
+#sidebar {
+    margin-top: 0;
+    width: 172px;
+    float: left;
+}
+
+#productbar {
+    width: 172px;
+}
+
+#content {
+    width: 940px;
+    margin: 0 10px;
+    padding-bottom: 10px;
+    float: left;
+}
+
+.sidebarLeft #content, .sidebarRight #content {
+    width: 748px;
+}
+
+.sidebarRight #sidebar {
+    float: right;
+}
+
+#footer {
+    clear: both;
+    width: 960px;
+    padding-top: 10px;
+    margin: 10px 0;
+}

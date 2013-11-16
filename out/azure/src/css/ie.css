@@ -1,0 +1,76 @@
+/* IE */
+.pie, .corners, .button, .submitButton, .input, .textbox, #footer .list a, .fx-gradient, .fx-gradient-bg, .fx-shadow-gradient, .fx-gradient2, .fx-gradient-3, .fx-gradient-4, .fx-gradient-5, .fx-gradient-6, #currencies a, #languages a, .box h2, .box h3, .sectionHead, .box ol, .box ul, .box .featured, .pictureView, .box li, .box li:hover, .box .content, .tabs li, .widgetBox, .bottomRound, .widgetBoxBottomRound, .sf-menu li.sfHover, .sf-menu li ul, a.viewAllHover, .pageHead, .counter, .dropDown ul, .pager .active, .lineBox, input[type = "text"], .itemSlider .prevItem, .itemSlider .nextItem, .specBoxTitles a.title, .itemSlider .nextItem, .itemSlider .prevtItem, .specBox h3, .flyoutMenu, .flyoutMenu a, .glowShadow, a.viewAllHover, div.anythingSlider .arrow, .promoBox, .FXgradOrange, .titleBox, .priceBox, .featuredList a {
+    behavior: url(out/azure/src/css/PIE.htc);
+}
+
+.rss {
+    display: none;
+}
+
+.button, .submitButton {
+    width: 1;
+}
+
+h1.page {
+    overflow: hidden;
+}
+
+/* Fix for adding spacer with hasLayout (http://www.satzansatz.de/cssd/onhavinglayout.html#list) */
+#footer .list li {
+    zoom: 1;
+}
+
+/* Fix for displaying CSS 3 FX on hover elements  */
+#footer .list a {
+    -pie-background: none;
+}
+
+/* Verticaly centered box */
+.v-align-box {
+    position: relative;
+}
+
+.v-align-box .v-align-item { *position:absolute;
+    top:
+    50%;
+}
+ /* *position - IE 7 fix  */
+.v-align-box .v-align-content {
+    position: relative;
+    top: -50%;
+}
+
+.product .title { *display:block;
+    * width: 166px;
+    * height: 42px;
+}
+
+.product:hover .cost-box { *display:block;
+}
+
+/* Fix for positioning */
+#mask {
+    position: absolute;
+}
+
+.submitButton {
+    width: 1;
+    padding: 0 12px 0 12px;
+}
+
+.removeButton {
+    padding-left: 5px;
+    padding-right: 10px;
+}
+
+#currencies li, #languages li {
+    overflow: hidden;
+}
+
+.box li {
+    border-radius: 0.1px;
+}
+
+.infogridView .titleBox, .infogridView .priceBox {
+    background: none;
+}
