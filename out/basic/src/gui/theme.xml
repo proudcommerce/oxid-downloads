@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="ISO-8859-15"?>
+<themes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="theme.xsd">
+
+    <theme id="ce" title="Default">
+        <color index="0" color="#ffffff" />
+        <color index="1" color="#e2e2e2" />
+        <color index="2" color="#555555" />
+        <color index="3" color="#000000" />
+        <color index="4" color="#fc6634" />
+    </theme>
+
+    <theme id="01" title="Green">
+        <color index="0" color="#ffffff" />
+        <color index="1" color="#efefef" />
+        <color index="2" color="#5e5e5e" />
+        <color index="3" color="#000000" />
+        <color index="4" color="#59ba13" />
+    </theme>
+
+    <theme id="02" title="Dark">
+        <color index="0" color="#ffffff" />
+        <color index="1" color="#d2d2d2" />
+        <color index="2" color="#5d5c61" />
+        <color index="3" color="#3a3a3a" />
+        <color index="4" color="#131313" />
+
+        <color index="2" const="oxHeaderBoxHdBg" />
+        <color index="0" const="oxHeaderBoxHdCl" />
+        <color index="0" const="oxHeaderBoxHdIco" />
+        <color index="1" const="oxHeaderBoxBdBg" />
+        <color index="2" const="oxHeaderBoxBdBr" />
+
+        <color index="3" const="oxHeaderBoxDdBg" />
+        <color index="0" const="oxHeaderBoxDdCl"/>
+        <color index="0" const="oxHeaderBoxDdIco"/>
+
+        <color index="2" const="oxHeaderBoxBasketHdBg"/>
+        <color index="0" const="oxHeaderBoxBasketHdCl"/>
+        <color index="1" const="oxHeaderBoxBasketBdBg"/>
+        <color index="2" const="oxHeaderBoxBasketBdBr"/>
+
+        <color index="3" const="oxHeaderBoxBasketDdBg"/>
+        <color index="0" const="oxHeaderBoxBasketDdCl"/>
+
+        <color index="3" const="oxHeaderBarLinksBg" />
+        <color index="0" const="oxHeaderBarLinksCl"/>
+        <color index="1" const="oxHeaderBarLinksHlCl"/>
+
+        <color index="4" const="oxHeaderBarLinksSingleBg" />
+        <color index="0" const="oxHeaderBarLinksSingleCl"/>
+        <color index="1" const="oxHeaderBarLinksSingleHlCl"/>
+
+        <color index="3" const="oxHeaderBarFixedHlBg"/>
+        <color index="0" const="oxHeaderBarFixedHlCl"/>
+
+        <color index="3" const="oxHeaderBarCatsOpenBg"/>
+        <color index="0" const="oxHeaderBarCatsOpenCl"/>
+        <color index="0" const="oxHeaderBarCatsOpenIco"/>
+        <color index="4" const="oxHeaderBarCatsOpenHlBg"/>
+        <color index="0" const="oxHeaderBarCatsOpenIco"/>
+
+        <color index="2" const="oxLeftBg"/>
+        <color index="3" const="oxLeftBr"/>
+        <color index="3" const="oxLeftHdBg"/>
+        <color index="0" const="oxLeftHdCl"/>
+
+        <color index="2" const="oxLeftTreeBg"/>
+        <color index="0" const="oxLeftTreeBr"/>
+        <color index="0" const="oxLeftTreeCl"/>
+        <color index="0" const="oxLeftTreeIco"/>
+        <color index="0" const="oxLeftTreeRootBr"/>
+        <color index="0" const="oxLeftTreeOpenIco"/>
+        <color index="3" const="oxLeftTreeActBg"/>
+
+        <color index="0" const="oxLeftInfoCl"/>
+        <color index="0" const="oxLeftInfoBr"/>
+        <color index="0" const="oxLeftInfoIco"/>
+
+        <color index="0" const="oxNewsCl"/>
+
+        <color index="1" const="oxRightFormsBg"/>
+        <color index="2" const="oxRightFormsBr"/>
+        <color index="2" const="oxRightFormsHdBg"/>
+        <color index="0" const="oxRightFormsHdCl"/>
+
+        <color index="1" const="oxRightBg"/>
+        <color index="2" const="oxRightBr"/>
+        <color index="2" const="oxRightHdBg"/>
+        <color index="0" const="oxRightHdCl"/>
+
+        <color index="2" const="oxRightFullProdBr"/>
+    </theme>
+
+</themes>
