@@ -1,0 +1,30 @@
+Thank you for using the OXID eShop!
+
+This software is written in PHP + MySQL and runs platform independent on Apache webservers.
+You can check the system requirements here (dependent from your edition): 
+http://www.oxid-esales.com/en/products/community-edition/system-requirements
+http://www.oxid-esales.com/en/products/professional-edition/system-requirements
+http://www.oxid-esales.com/en/products/enterprise-edition/system-requirements
+
+Installation:
+=============
+- unzip the downloaded file and upload it to your webserver via FTP
+- create a blank database
+- point your browser to http://www.yourshop.com and follow the instructions of the installation script
+
+See more detailled installation instructions in our manual:
+http://www.oxid-esales.com/en/resources/help-faq/manual-eshop-pe-ce-4-0-0-0/installing-oxid-eshop for Community and Professional Edition
+http://www.oxid-esales.com/en/resources/help-faq/manual-eshop-ee-4-0-0-0/installing-oxid-eshop for Enterprise Edition
+
+Once your OXID eShop is installed, you can enter the admin area using
+URL: http://www.yourshop.com/admin/
+user: admin
+pass: admin
+Please change the user name and the password immediately in admin -> Administer Users -> Users -> Main tab.
+
+In case of any difficulties feel free to visit our community support forums at
+http://www.oxid-esales.com/forum/
+
+Have fun with your OXID eShop!
+
+The OXID team

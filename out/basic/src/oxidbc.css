@@ -1,0 +1,94 @@
+/* IE6 header min-width  / min-heigth fix */
+#header div.bar .fixed {_width:184px;}
+#header dl.box {_height:95px;_width:150px;}
+#header dl.box.basket dd.dropdown {_width:150px;}
+#body .details {_height:260px; }
+#right .listitem {_height: 47px;}
+
+/* IE6 absolute position can supports only (top,left) fix */
+#body h1 small{_top:9px;_left:0; _width:90%;_margin-right:10%;_text-align:right;}
+#body .product strong.h4 a.rss{_top:12px;_left:0; _width:10%;_margin-left:90%;_text-align:right;_display:block;}
+#body h1.head a.rss {_top:12px;_left:0; _width:10%;_margin-left:90%;_text-align:right;_display:block;}
+#right strong.h2 a.rss{_top:7px;_left:0; _width:20%;_margin-left:85%;_text-align:right;_display:block;}
+#path a.dinfo{_left:0;_width:99.7%;_text-align:right;_display:block;}
+
+/* various margins fixes */
+hr {margin: -.4em 0;padding:0;}
+#left hr {margin: -.4em 10px;}
+input.chk {margin: -3px 1px -3px -4px;}
+p {margin:0}
+
+#body .product.big strong.h4{width: 549px;}
+
+/* line height containing <sup> fix */
+#body .product .price {margin-bottom:1em;}
+#body .product .price sup.dinfo a{font-size: 16px;}
+
+#body .product .price sup.dinfo{_width: auto;}
+
+#body .product.thinest .price sup.dinfo a{font-size: 11px;}
+#body .product.details .price sup.dinfo{font-size: 12px;}
+#body .product.details .price sup.dinfo a{font-size: 13px;}
+#body .product.details .price sub.only{font-size: 13px;}
+#body .product .flag {overflow: hidden;}
+
+
+/* right box'es goes under body fix */
+#right div.box {border-bottom:1px solid #fafafa;}
+
+/* expanding body > 580 with 5 small product boxes fix */
+div#body  {margin:0 204px 50px 190px;width:580px;_margin-left:187px;}
+
+/* IE6 double margin fix - http://www.positioniseverything.net/explorer/doubled-margin.html */
+#left, #right, #body .locator, #body .separator, #body .product, #body .box, #body .boxhead, #body .wellcome, #body strong.head2, #body strong.h2, #body .lochead strong.h4, #body strong.h4, #body .div.bar.prevnext, #body .ordersteps, #body .basket, #body .errorbox, #body .morecats,#body .msg {_display: inline;}
+
+
+/* IE prev/next in basket/accounts fix */
+#body div.bar.prevnext input {overflow: visible; padding-top: 6px; padding-bottom: 4px;}
+#body span.btn input{overflow: visible;}
+
+#body .basket th.brd {border-bottom:1px solid #fff;}
+
+/* IE relative z-index calculation fix  - http://annevankesteren.nl/2005/06/z-index */
+dl.box, ul.menue li {z-index: 1000;}
+
+/* IE right list long article title fix */
+#right .listitem .arttitle {_overflow: hidden; _width: 110px; _display: block;}
+
+/* IE opacity */
+#mask.on { filter:Alpha(Opacity=70);}
+div.bar.links a.language.act img{filter:Alpha(Opacity=70);}
+#body #demoAdminLink {filter:Alpha(opacity=70);}
+
+/* IE6 iframe shim for select boxes */
+#mask.on iframe{_visibility: visible;_width:900px;_height: 100%;_width:100%;_filter:mask();}
+
+/* IE6 position fixed workaround */
+#mask.on{ _position:absolute;_top:expression((_mask = document.documentElement.scrollTop) + 'px');}
+div.popup { _visibility:hidden;display:none;}
+div.popup.on { _position:absolute;_visibility:visible;display:block;_top:expression((_popup = document.documentElement.scrollTop) + document.documentElement.clientHeight/2 + 'px');}
+
+/* IE fixing problem with collspan when <td> has colspan and nonbreakable content doesn't fit in it */
+.showHideShippAddr {width: 543px; overflow: hidden;}
+
+/* IE 6 fixing problems with add to cart button on article details page */
+#body .details .tocart {_display:inline;}
+
+/* IE fixing 1px height gap in right top column near path, where we can see right column background */
+div#path {height: 13px;}
+
+/* IE 6 fixing problem with rss icon position */
+a.rss{ right:13px; top:9px;}
+
+/* IE 6 left column categories menu 3-ird level background problem */
+ul.tree li a.last { _background-image: none; }
+
+/* IE 6 bottom copyright fix */
+div.bar.copy{_overflow: hidden;}
+
+/* IE 6 top popup category menu fix */
+div.bar.categories ul.menue.verticall   li { _width: 1%; }
+div.bar.categories ul.menue.verticall   li a { _width: 100%; _padding-right: 0px; }
+
+/* IE popup content fix */
+#body.plain .boxhead,#body.plain .box { _display: block;}
