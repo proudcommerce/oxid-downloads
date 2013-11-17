@@ -1,0 +1,27 @@
+<IfModule mod_rewrite.c>
+
+Options +FollowSymLinks
+RewriteEngine On
+RewriteCond %{REQUEST_URI} !(\/core\/|\/export\/|\/modules\/|\/out\/|\/setup\/|\/tmp\/|\/views\/)
+RewriteRule admin/test\.php$ admin/test.php?mod_rewrite=1
+
+RewriteCond %{REQUEST_URI} !(\/admin\/|\/core\/|\/export\/|\/modules\/|\/out\/|\/setup\/|\/tmp\/|\/views\/)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule !(\.html|\/|\.jpg|\.css|\.pdf|\.doc|\.gif|\.png|\.js)$ %{REQUEST_URI}/ [R=301,L]
+
+RewriteCond %{REQUEST_URI} !(\/admin\/|\/core\/|\/export\/|\/modules\/|\/out\/|\/setup\/|\/tmp\/|\/views\/)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule (\.html|\/)$ oxseo.php
+
+
+</IfModule>
+
+# disabling log file access from outside
+<FilesMatch "(EXCEPTION_LOG\.txt|\.log$|\.tpl$)">
+order allow,deny
+deny from all
+</FilesMatch>
+
+Options -Indexes
