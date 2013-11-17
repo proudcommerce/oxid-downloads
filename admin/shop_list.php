@@ -19,7 +19,7 @@
  * @package admin
  * @copyright (C) OXID eSales AG 2003-2009
  * @version OXID eShop CE
- * $Id: shop_list.php 19181 2009-05-18 15:14:56Z rimvydas.paskevicius $
+ * $Id: shop_list.php 16302 2009-02-05 10:18:49Z rimvydas.paskevicius $
  */
 
 /**
@@ -108,11 +108,6 @@ class Shop_List extends oxAdminList
         $this->_aViewData['updatemain']   = $this->_blUpdateMain;
 
         $this->_aViewData['oxid'] =  $soxId;
-
-        if ( $this->_aViewData['updatenav'] ) {
-            //skipping requirements checking when reloading nav frame
-            oxSession::setVar( "navReload", true );
-        }
 
         //making sure we really change shops on low level
         if ( $soxId && $soxId != '-1' ) {

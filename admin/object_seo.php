@@ -19,7 +19,7 @@
  * @package admin
  * @copyright (C) OXID eSales AG 2003-2009
  * @version OXID eShop CE
- * $Id: object_seo.php 19622 2009-06-04 16:54:41Z arvydas $
+ * $Id: object_seo.php 17479 2009-03-20 12:32:53Z arvydas $
  */
 
 /**
@@ -152,7 +152,7 @@ class Object_Seo extends oxAdminDetails
     public function save()
     {
         // saving/updating seo params
-        if ( ( $sOxid = $this->getSeoEntryId() ) ) {
+        if ( ( $sOxid = oxConfig::getParameter( 'oxid' ) ) ) {
             $aSeoData = oxConfig::getParameter( 'aSeoData' );
             $iShopId  = $this->getConfig()->getShopId();
 
@@ -161,36 +161,12 @@ class Object_Seo extends oxAdminDetails
                 $aSeoData['oxfixed'] = 0;
             }
 
-            $oEncoder = oxSeoEncoder::getInstance();
-
-            // marking self and page links as expired
-            $oEncoder->markAsExpired( $sOxid, $this->getconfig()->getShopId(), 1, $this->_iEditLang );
-
             // saving
-            $oEncoder->addSeoEntry( $sOxid, $iShopId, $this->_iEditLang, $this->_getStdUrl( oxConfig::getParameter( 'oxid' ) ),
-                                    $aSeoData['oxseourl'], $this->_getSeoEntryType(), $aSeoData['oxfixed'],
+            $oEncoder = oxSeoEncoder::getInstance();
+            $oEncoder->addSeoEntry( $sOxid, $iShopId, $this->_iEditLang, $this->_getStdUrl( $sOxid ),
+                                    $aSeoData['oxseourl'], $this->_getType(), $aSeoData['oxfixed'],
                                     trim( $aSeoData['oxkeywords'] ), trim( $aSeoData['oxdescription'] ), $this->processParam( $aSeoData['oxparams'] ) );
         }
-    }
-
-    /**
-     * Returns seo entry ident
-     *
-     * @return string
-     */
-    protected function getSeoEntryId()
-    {
-        return oxConfig::getParameter( 'oxid' );
-    }
-
-    /**
-     * Returns seo entry type
-     *
-     * @return string
-     */
-    protected function _getSeoEntryType()
-    {
-        return $this->_getType();
     }
 
     /**

@@ -19,7 +19,7 @@
  * @package core
  * @copyright (C) OXID eSales AG 2003-2009
  * @version OXID eShop CE
- * $Id: oxsession.php 19892 2009-06-16 13:30:17Z arvydas $
+ * $Id: oxsession.php 18599 2009-04-28 11:07:50Z arvydas $
  */
 
 
@@ -89,28 +89,18 @@ class oxSession extends oxSuperCfg
     protected $_oBasket = null;
 
     /**
-     * Array of Classes => methods, which requires forced cookies support
+     * Array of Classes => methods, which requires forced cookies support. Works together with blSessionEnforceCookies config option.
      *
      * @var unknown_type
      */
     protected $_aRequireCookiesInFncs = array( 'register' => null,
-                                               'account'  => null,
-                                               'tobasket',
-                                               'login_noredirect',
-                                               'tocomparelist'
-                                               );
-
-    /**
-     * Marker if processed urls must contain SID parameter
-     *
-     * @var bool
-     */
-    protected $_blSidNeeded = null;
+                                                'account' => null,
+                                                             'tobasket',
+                                                             'login_noredirect'
+                                                );
 
     /**
      * Session params to be kept even after session timeout
-     *
-     * @var array
      */
     protected $_aPersistentParams = array("actshop", "lang", "currency", "language", "tpllanguage");
 
@@ -179,7 +169,7 @@ class oxSession extends oxSuperCfg
     /**
      * Starts shop session, generates unique session ID, extracts user IP.
      *
-     * @throws oxSystemComponentException
+     * @throws oxSystemComponentException, oxCookieException
      *
      * @return null
      */
@@ -207,6 +197,7 @@ class oxSession extends oxSuperCfg
             $sid = $sSidParam;
         }
 
+
         //creating new sid
         if ( !$sid) {
             $this->initNewSession();
@@ -215,14 +206,15 @@ class oxSession extends oxSuperCfg
             $this->_setSessionId($sid);
         }
 
+
         //starting session if only we can
         if ($this->_allowSessionStart()) {
 
-            $this->_sessionStart();
+            @session_start();
 
             //special handling for new ZP cluster session, as in that case session_start() regenerates id
-            if ( $this->_sId != session_id() ) {
-                $this->_setSessionId( session_id() );
+            if ($this->_sId != session_id()) {
+                $this->_setSessionId(session_id());
             }
         }
 
@@ -230,16 +222,15 @@ class oxSession extends oxSuperCfg
         if (!$this->_getCookieSid() && !oxUtils::getInstance()->isSearchEngine() && $this->_isSwappedClient() ) {
             $this->initNewSession();
         }
-    }
 
-    /**
-     * Initialize session data (calls php::session_start())
-     *
-     * @return null
-     */
-    protected function _sessionStart()
-    {
-        return @session_start();
+        $sClass    = oxConfig::getParameter( 'cl' );
+        $sFunction = oxConfig::getParameter( 'fnc' );
+        //check if we have mandatory cookie support
+        if ( !$this->_checkMandatoryCookieSupport( $sClass, $sFunction ) ) {
+            $oEx = oxNew( 'oxCookieException' );
+            $oEx->setMessage( 'EXCEPTION_COOKIE_NOCOOKIE' );
+            throw $oEx;
+        }
     }
 
     /**
@@ -543,16 +534,6 @@ class oxSession extends oxSuperCfg
     }
 
     /**
-     * Returns true if its not search engine and config option blForceSessionStart = 1/true
-     *
-     * @return bool
-     */
-    protected function _forceSessionStart()
-    {
-        return ( !oxUtils::getInstance()->isSearchEngine() ) && ( ( bool ) $this->getConfig()->getConfigParam( 'blForceSessionStart' ) ) ;
-    }
-
-    /**
      * Checks if we can start new session. Returns bool success status
      *
      * @return bool
@@ -560,25 +541,48 @@ class oxSession extends oxSuperCfg
     protected function _allowSessionStart()
     {
         $blAllowSessionStart = true;
-
-        // special handling only in non-admin mode
-        if ( !$this->isAdmin() ) {
-            if ( oxUtils::getInstance()->isSearchEngine() || oxConfig::getParameter( 'skipSession' ) ) {
-                $blAllowSessionStart = false;
-            } elseif ( !$this->_forceSessionStart() && !oxUtilsServer::getInstance()->getOxCookie( 'sid_key' ) ) {
-
-                // session is not needed to start when it is not necessary:
-                // - no sid in request and also user executes no session connected action
-                // - no cookie set and user executes no session connected action
-                if ( !oxUtilsServer::getInstance()->getOxCookie( $this->getName() ) &&
-                     !( oxConfig::getParameter( $this->_sName ) || oxConfig::getParameter( 'force_'.$this->_sName ) ) &&
-                     !$this->_isSessionRequiredAction() ) {
-                    $blAllowSessionStart = false;
-                }
-            }
+        if ( oxUtils::getInstance()->isSearchEngine() ) {
+            $blAllowSessionStart = false;
         }
 
+        if ( oxConfig::getParameter( 'skipSession' ) ) {
+            $blAllowSessionStart = false;
+        }
+
+        /*if ($this->_getCookieSid())
+            $blAllowSessionStart = true;*/
+
         return $blAllowSessionStart;
+    }
+
+    /**
+     * Checks for mandatory cookie support. Return true if the check is succseful.
+     * False means some problem occured - user has no cookies, but they are required.
+     *
+     * @param string $sClass    class name
+     * @param string $sFunction function name
+     *
+     * @return null
+     */
+    protected function _checkMandatoryCookieSupport( $sClass, $sFunction )
+    {
+        $myConfig  = $this->getConfig();
+
+        //no mandatory cookie needed
+        if (!$myConfig->getConfigParam( 'blSessionEnforceCookies' ) || (oxUtilsServer::getInstance()->getOxCookie($this->getName())) || !$sClass) {
+            return true;
+        }
+
+        if ($sFunction && in_array($sFunction, $this->_aRequireCookiesInFncs)) {
+            return false;
+        }
+
+        if (array_key_exists($sClass, $this->_aRequireCookiesInFncs)) {
+            return false;
+        }
+
+        //otherwise cookies are mandatories and we don't have them
+        return true;
     }
 
     /**
@@ -813,72 +817,4 @@ class oxSession extends oxSuperCfg
         return oxUtilsServer::getInstance()->getOxCookie($this->getName());
     }
 
-    /**
-     * Tests if current action requires session
-     *
-     * @return bool
-     */
-    protected function _isSessionRequiredAction()
-    {
-        $sFunction = oxConfig::getParameter( 'fnc' );
-        $sClass = oxConfig::getParameter( 'cl' );
-
-        return ( $sFunction && in_array( strtolower( $sFunction ), $this->_aRequireCookiesInFncs ) ) ||
-               ( $sClass && array_key_exists( strtolower( $sClass ), $this->_aRequireCookiesInFncs ) );
-    }
-
-    /**
-     * Checks if cookies are not available. Returns TRUE of sid needed
-     *
-     * @return bool
-     */
-    public function isSidNeeded()
-    {
-        if ( $this->_blSidNeeded === null ) {
-            // setting initial state
-            $this->_blSidNeeded = false;
-
-            // no SIDs for seach engines
-            if ( !oxUtils::getInstance()->isSearchEngine() ) {
-                // cookie found - SID is not needed
-                if ( oxUtilsServer::getInstance()->getOxCookie( $this->getName() ) ) {
-                    $this->_blSidNeeded = false;
-                } elseif ( $this->_forceSessionStart() ) {
-                    $this->_blSidNeeded = true;
-                } else {
-                    // no cookie, so must check session
-                    if ( $blSidNeeded = self::getVar( 'blSidNeeded' ) ) {
-                        $this->_blSidNeeded = true;
-                    } elseif ( $this->_isSessionRequiredAction() ) {
-                        $this->_blSidNeeded = true;
-
-                        // storing to session, performance..
-                        self::setVar( 'blSidNeeded', $this->_blSidNeeded  );
-                    }
-                }
-            }
-        }
-
-        return $this->_blSidNeeded;
-    }
-
-    /**
-     * Appends url with session ID, but only if oxSession::_isSidNeeded() returns true
-     *
-     * @param string $sUrl url to append with sid
-     *
-     * @return string
-     */
-    public function processUrl( $sUrl )
-    {
-        if ( $this->isSidNeeded() ) {
-            $oStr = getStr();
-            // only if sid is not yet set
-            if ( $oStr->strstr( $sUrl, 'sid=' ) === false ) {
-                $sUrl .= ( $oStr->strstr( $sUrl, '?' ) !== false ?  '&amp;' : '?' ) . $this->sid(). '&amp;';
-            }
-        }
-
-        return $sUrl;
-    }
 }

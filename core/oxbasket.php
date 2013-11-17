@@ -19,7 +19,7 @@
  * @package core
  * @copyright (C) OXID eSales AG 2003-2009
  * @version OXID eShop CE
- * $Id: oxbasket.php 19617 2009-06-04 15:20:49Z alfonsas $
+ * $Id: oxbasket.php 17683 2009-03-31 08:14:05Z arvydas $
  */
 
 /**
@@ -908,7 +908,7 @@ class oxBasket extends oxSuperCfg
      */
     protected function _calcBasketTotalDiscount()
     {
-        if ( $this->isAdmin() && $this->_oTotalDiscount && $this->_oTotalDiscount->getBruttoPrice() != 0 ) {
+        if ( $this->_oTotalDiscount && $this->_oTotalDiscount->getBruttoPrice() != 0 ) {
             return;
         }
         $this->_oTotalDiscount = oxNew( 'oxPrice' );

@@ -19,7 +19,7 @@
  * @package views
  * @copyright (C) OXID eSales AG 2003-2009
  * @version OXID eShop CE
- * $Id: pricealarm.php 19821 2009-06-12 12:38:59Z rimvydas.paskevicius $
+ * $Id: pricealarm.php 17481 2009-03-20 12:35:53Z arvydas $
  */
 
 /**
@@ -122,7 +122,7 @@ class Pricealarm extends oxUBase
         $oAlarm->oxpricealarm__oxshopid = new oxField( $myConfig->getShopId());
         $oAlarm->oxpricealarm__oxcurrency = new oxField( $oCur->name);
 
-        $oAlarm->oxpricealarm__oxlang = new oxField(oxLang::getInstance()->getBaseLanguage());
+            $oAlarm->oxpricealarm__oxlang = new oxField(oxLang::getInstance()->getBaseLanguage());
 
         $oAlarm->save();
 

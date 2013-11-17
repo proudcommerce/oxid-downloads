@@ -19,7 +19,7 @@
  * @package core
  * @copyright (C) OXID eSales AG 2003-2009
  * @version OXID eShop CE
- * $Id: oxbase.php 19884 2009-06-16 12:01:15Z arvydas $
+ * $Id: oxbase.php 18113 2009-04-14 07:34:14Z rimvydas.paskevicius $
  */
 
 /**
@@ -182,7 +182,7 @@ class oxBase extends oxSuperCfg
             $this->_sCacheKey = null;
         }
 
-        $this->setShopId( $myConfig->getShopId() );
+        $this->setShopId( $myConfig->getShopID() );
     }
 
     /**
@@ -384,7 +384,7 @@ class oxBase extends oxSuperCfg
         }
 
 
-        reset($dbRecord );
+        reset($dbRecord);
         while ( list( $sName, $sValue ) = each( $dbRecord ) ) {
 
             // patch for IIS
@@ -392,10 +392,11 @@ class oxBase extends oxSuperCfg
             //if( is_array($value) && count( $value) == 1)
             //    $value = current( $value);
 
-            $this->_setFieldData( $sName, $sValue );
+            $this->_setFieldData( $sName, $sValue);
         }
 
-        $sOxidField = $this->_getFieldLongName( 'oxid' );
+        $sOxidField = $this->_getFieldLongName('oxid');
+        //$this->_sOXID = $this->$oxid->value;
         $this->_sOXID = $this->$sOxidField->value;
 
     }
@@ -519,7 +520,6 @@ class oxBase extends oxSuperCfg
      */
     public function isDerived()
     {
-
         return $this->_blIsDerived;
     }
 
@@ -672,7 +672,7 @@ class oxBase extends oxSuperCfg
             $sOXID = $this->getId();
 
             //do not allow derived deletion
-            if ( !$this->allowDerivedDelete() ) {
+            if ( $this->isDerived() ) {
                 return false;
             }
         }
@@ -723,7 +723,7 @@ class oxBase extends oxSuperCfg
         if ( $this->exists() ) {
 
             //do not allow derived update
-            if ( !$this->allowDerivedUpdate() ) {
+            if ( $this->isDerived()) {
                 return false;
             }
 
@@ -741,26 +741,6 @@ class oxBase extends oxSuperCfg
         } else {
             return false;
         }
-    }
-
-    /**
-     * Checks if derived update is allowed (calls oxbase::isDerived)
-     *
-     * @return bool
-     */
-    public function allowDerivedUpdate()
-    {
-        return !$this->isDerived();
-    }
-
-    /**
-     * Checks if derived delete is allowed (calls oxbase::isDerived)
-     *
-     * @return bool
-     */
-    public function allowDerivedDelete()
-    {
-        return !$this->isDerived();
     }
 
     /**
@@ -1293,7 +1273,7 @@ class oxBase extends oxSuperCfg
     protected function _update()
     {
         //do not allow derived item update
-        if ( !$this->allowDerivedUpdate() ) {
+        if ( $this->isDerived() ) {
             return false;
         }
 

@@ -19,7 +19,7 @@
  * @package core
  * @copyright (C) OXID eSales AG 2003-2009
  * @version OXID eShop CE
- * $Id: oxseodecoder.php 19308 2009-05-22 14:08:20Z arvydas $
+ * $Id: oxseodecoder.php 17741 2009-04-01 11:51:35Z arvydas $
  */
 
 /**
@@ -129,7 +129,7 @@ class oxSeoDecoder extends oxSuperCfg
             $oDb->execute( "update oxseohistory set oxhits = oxhits + 1 where oxident = '{$sKey}' and oxshopid = '{$iShopId}' limit 1" );
 
             // fetching new url
-            $sUrl = $oDb->getOne( "select oxseourl from oxseo where oxobjectid = '{$oRs->fields['oxobjectid']}' and oxlang = '{$oRs->fields['oxlang']}' and oxshopid = '{$iShopId}' order by oxparams " );
+            $sUrl = $oDb->getOne( "select oxseourl from oxseo where oxobjectid = '{$oRs->fields['oxobjectid']}' and oxlang = '{$oRs->fields['oxlang']}' and oxshopid = '{$iShopId}' " );
         }
 
         return $sUrl;

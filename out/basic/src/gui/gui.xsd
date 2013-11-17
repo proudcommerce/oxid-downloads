@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-15" standalone="yes"?>
+<?xml version="1.0" standalone="yes"?>
 <xs:schema id="OXIDGui" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
   <xs:element name="gui">
     <xs:complexType>

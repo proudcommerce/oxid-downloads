@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<html>
+<html>  
 <head>
     <title>[{ oxmultilang ident="GENERAL_ADMIN_TITLE_1" }]</title>
 </head>
@@ -34,37 +34,13 @@ function forceReloadingEditFrame()
     top.basefrm.edit.document.reloadFrame = true;
 }
 
-function forceReloadingListFrame( oxId )
-{
-    //forcing list frame to reload after submit
-    top.basefrm.list.document.reloadFrame = true;
-}
-
 function reloadEditFrame()
 {
-    if (top.basefrm.edit) {
-      if (top.basefrm.edit.document.reloadFrame) {
-          var oTransfer = top.basefrm.edit.document.getElementById("transfer");
-          oTransfer.submit();
-      }
+    if (top.basefrm.edit.document.reloadFrame) {
+        var oTransfer = top.basefrm.edit.document.getElementById("transfer");
+        oTransfer.submit();
     }
 }
-
-function reloadListFrame()
-{
-  if (top.basefrm.list) {
-      if (top.basefrm.list.document.reloadFrame) {
-          top.basefrm.edit.UpdateList();
-      }
-  }
-}
-
-function reloadListEditFrames()
-{
-  reloadListFrame();
-  reloadEditFrame();
-}
-
 
 function loadEditFrame(sUrl)
 {

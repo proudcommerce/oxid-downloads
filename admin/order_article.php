@@ -19,7 +19,7 @@
  * @package admin
  * @copyright (C) OXID eSales AG 2003-2009
  * @version OXID eShop CE
- * $Id: order_article.php 19117 2009-05-15 12:44:08Z vilma $
+ * $Id: order_article.php 16302 2009-02-05 10:18:49Z rimvydas.paskevicius $
  */
 
 /**
@@ -66,7 +66,7 @@ class Order_Article extends oxAdminDetails
 
             //get article id
             $sQ = "select oxid from oxarticles where oxarticles.oxartnum = '$sArtNum'";
-            if ( ( $sArtId = oxDb::getDb()->getOne( $sQ ) ) && $dAmount > 0 ) {
+            if ( ( $sArtId = oxDb::getDb()->getOne( $sQ ) ) ) {
                 $oOrderArticle = oxNew( 'oxorderArticle' );
                 $oOrderArticle->oxorderarticles__oxartid  = new oxField( $sArtId );
                 $oOrderArticle->oxorderarticles__oxartnum = new oxField( $sArtNum );

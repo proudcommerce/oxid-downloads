@@ -19,7 +19,7 @@
  * @package admin
  * @copyright (C) OXID eSales AG 2003-2009
  * @version OXID eShop CE
- * $Id: pricealarm_send.php 19841 2009-06-15 08:00:07Z rimvydas.paskevicius $
+ * $Id: pricealarm_send.php 17243 2009-03-16 15:16:57Z arvydas $
  */
 
 /**
@@ -171,11 +171,9 @@ class PriceAlarm_Send extends oxAdminList
         $smarty->assign( "currency", $oThisCurr );
         $smarty->assign( "shopImageDir", $myConfig->getImageUrl( false , false ) );
 
-        $iLang = $oAlarm->oxpricealarm__oxlang->value;
-
-        if (!$iLang) {
+        $iLang = @$oAlarm->oxpricealarm__oxlang->value;
+        if (!$iLang)
             $iLang = 0;
-        }
 
         $old_iLang = $oLang->getTplLanguage();
         $oLang->setTplLanguage( $iLang );

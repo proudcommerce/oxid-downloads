@@ -19,7 +19,7 @@
  * @package core
  * @copyright (C) OXID eSales AG 2003-2009
  * @version OXID eShop CE
- * $Id: oxvendor.php 19752 2009-06-10 13:01:01Z arvydas $
+ * $Id: oxvendor.php 18024 2009-04-09 11:29:24Z arvydas $
  */
 
 /**
@@ -147,36 +147,6 @@ class oxVendor extends oxI18n
         $this->oxvendor__oxnrofarticles = new oxField($this->_iNrOfArticles, oxField::T_RAW);
     }
 
-    /**
-     * Loads object data from DB (object data ID is passed to method). Returns
-     * true on success.
-     *
-     * @param string $sOxid object id
-     *
-     * @return oxvendor
-     */
-    public function load( $sOxid )
-    {
-        if ( $sOxid == 'root' ) {
-            return $this->_setRootObjectData();
-        }
-        return parent::load( $sOxid );
-    }
-
-    /**
-     * Sets root vendor data. Returns true
-     *
-     * @return bool
-     */
-    protected function _setRootObjectData()
-    {
-        $this->setId( 'root' );
-        $this->oxvendor__oxicon = new oxField( '', oxField::T_RAW );
-        $this->oxvendor__oxtitle = new oxField( oxLang::getInstance()->translateString( 'byVendor', $this->getLanguage(), false ), oxField::T_RAW );
-        $this->oxvendor__oxshortdesc = new oxField( '', oxField::T_RAW );
-
-        return true;
-    }
 
     /**
      * getRootVendor creates root vendor object
@@ -184,20 +154,22 @@ class oxVendor extends oxI18n
      * @param integer $iLang language
      *
      * @static
-     * @deprecated use oxvendor::load( 'root' ) instead
      * @access public
      * @return void
      */
     public static function getRootVendor( $iLang = null)
     {
-        $iLang = isset( $iLang ) ? $iLang : oxLang::getInstance()->getBaseLanguage();
-        if ( !isset( self::$_aRootVendor[$iLang] ) ) {
-            self::$_aRootVendor[$iLang] = false;
-
-            $oObject = oxNew( 'oxvendor' );
-            if ( $oObject->loadInLang( $iLang, 'root' ) ) {
-                self::$_aRootVendor[$iLang] = $oObject;
-            }
+        if (!isset($iLang)) {
+            $iLang = oxLang::getInstance()->getBaseLanguage();
+        }
+        if (!self::$_aRootVendor[$iLang]) {
+            $oRootVendor = oxNew( 'oxvendor' );
+            $oRootVendor->setId( 'root' );
+            $oRootVendor->setLanguage( $iLang );
+            $oRootVendor->oxvendor__oxicon      = new oxField('');
+            $oRootVendor->oxvendor__oxtitle     = new oxField(oxLang::getInstance()->translateString( 'byVendor', $iLang, false ) );
+            $oRootVendor->oxvendor__oxshortdesc = new oxField('');
+            self::$_aRootVendor[$iLang] = $oRootVendor;
         }
         return self::$_aRootVendor[$iLang];
     }

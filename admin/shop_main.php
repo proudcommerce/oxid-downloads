@@ -19,7 +19,7 @@
  * @package admin
  * @copyright (C) OXID eSales AG 2003-2009
  * @version OXID eShop CE
- * $Id: shop_main.php 19181 2009-05-18 15:14:56Z rimvydas.paskevicius $
+ * $Id: shop_main.php 17243 2009-03-16 15:16:57Z arvydas $
  */
 
 

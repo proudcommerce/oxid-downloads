@@ -2,9 +2,12 @@
 
 <script type="text/javascript">
 <!--
-function UpdateList()
+[{ if $updatelist == 1}]
+    UpdateList('[{ $oxid }]');
+[{ /if}]
+
+function UpdateList( sID)
 {
-    sID = '[{ $oxid }]';
     var oSearch = parent.list.document.getElementById("search");
     oSearch.oxid.value=sID;
     oSearch.submit();
@@ -375,21 +378,6 @@ function modSmtpField()
 </table>
 
 </form>
-
-<script type="text/javascript">
-<!--
-[{ if $updatelist == 1}]
-    //UpdateList('[{ $oxid }]');
-    //Reloading list
-    top.forceReloadingListFrame();
-[{ /if}]
-
-[{ if $updatenav }]
-    UpdateNav();
-[{ /if}]
--->
-</script>
-
 
 [{include file="bottomnaviitem.tpl"}]
 

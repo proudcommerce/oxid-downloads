@@ -19,7 +19,7 @@
  * @package core
  * @copyright (C) OXID eSales AG 2003-2009
  * @version OXID eShop CE
- * $Id: oxemail.php 19352 2009-05-25 13:16:24Z vilma $
+ * $Id: oxemail.php 18956 2009-05-12 08:55:26Z vilma $
  */
 /**
  * Includes PHP mailer class.
@@ -780,8 +780,6 @@ class oxEmail extends phpmailer
 
         //deprecated var
         $smarty->assign( "isreview", true);
-        $oUser = oxNew( 'oxuser' );
-        $smarty->assign( "reviewuser", $oUser->getReviewUserHash($oOrder->oxorder__oxuserid->value) );
 
         $oOutputProcessor = oxNew( "oxoutput" );
         $aNewSmartyArray = $oOutputProcessor->processViewArray( $smarty->get_template_vars(), "oxemail" );

@@ -69,10 +69,8 @@
 
     // Use browser cookies to store session id (no sid parameter in URL)
     $this->blSessionUseCookies = 1;
-
-    // in case session must be started on first user page visit (not only on
-    // session required action) set this option value 1
-    $this->blForceSessionStart = 0;
+    // Force user to use cookies (no checkout without cookie support)
+    $this->blSessionEnforceCookies = 1;
 
     // uncomment the following line if you want euro sign leave unchanged in output
     // the default is to convert euro sign symbol to html entity

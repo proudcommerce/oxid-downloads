@@ -19,7 +19,7 @@
  * @package views
  * @copyright (C) OXID eSales AG 2003-2009
  * @version OXID eShop CE
- * $Id: vendorlist.php 19752 2009-06-10 13:01:01Z arvydas $
+ * $Id: vendorlist.php 18045 2009-04-09 12:26:14Z arvydas $
  */
 
 /**
@@ -141,13 +141,20 @@ class VendorList extends aList
     }
 
     /**
-     * Returns product link type (OXARTICLE_LINKTYPE_VENDOR)
+     * Iterates through list articles and performs list view specific tasks:
+     *  - sets type of link whicn needs to be generated (vendor link)
+     *  - appends link with vendor list specific parameters
      *
-     * @return int
+     * @return null
      */
-    protected function _getProductLinkType()
+    protected function _processListArticles()
     {
-        return OXARTICLE_LINKTYPE_VENDOR;
+        if ( $aArtList = $this->getArticleList() ) {
+            foreach ( $aArtList as $oArticle ) {
+                // forcing to generate vendor URLs by getLink
+                $oArticle->setLinkType( OXARTICLE_LINKTYPE_VENDOR );
+            }
+        }
     }
 
     /**
@@ -393,11 +400,10 @@ class VendorList extends aList
      * (calls parent::_collectMetaKeyword())
      *
      * @param string $sKeywords data to use as keywords
-     * @param bool   $blRemoveDuplicatedWords remove dublicated words
      *
      * @return string
      */
-    protected function _prepareMetaKeyword( $sKeywords, $blRemoveDuplicatedWords = true )
+    protected function _prepareMetaKeyword( $sKeywords )
     {
         return parent::_collectMetaKeyword( $sKeywords );
     }

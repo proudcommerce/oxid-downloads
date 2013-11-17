@@ -323,14 +323,10 @@ class oxSysRequirements
         // client version must be >=5
         if ( $iModStat ) {
             $sClientVersion = mysql_get_client_info();
-            if (version_compare( $sClientVersion, '5', '<' )) {
-                $iModStat = 1;
-                if (version_compare( $sClientVersion, '4', '<' )) {
-                    $iModStat = 0;
-                }
-            } elseif (version_compare($sClientVersion, '5.0.36', '>=') && version_compare($sClientVersion, '5.0.38', '<')) {
-                // mantis#0001003: Problems with MySQL version 5.0.37
-                $iModStat = 0;
+            $iModStat = version_compare( mysql_get_client_info(), '5', '>=' ) ? $iModStat : 1;
+            // notice if client version < 5
+            if ( $iModStat == 1) {
+                $iModStat = version_compare( mysql_get_client_info(), '4', '>=' ) ? $iModStat : 0;
             }
         }
         return $iModStat;
@@ -496,9 +492,7 @@ class oxSysRequirements
             }
         }
 
-        if ( $this->_blSysReqStatus === null ) {
-            $this->_blSysReqStatus = true;
-        }
+        $this->_blSysReqStatus = true;
         if ( count($aCollations) > 0 ) {
             $this->_blSysReqStatus = false;
         }
@@ -533,7 +527,6 @@ class oxSysRequirements
     public function getSysReqStatus()
     {
         if ( $this->_blSysReqStatus == null ) {
-            $this->_blSysReqStatus = true;
             $this->getSystemInfo();
             $this->checkCollation();
         }

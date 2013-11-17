@@ -6,7 +6,7 @@
                 <TAB id="tbclshop_main" cl="shop_main" />
                 <TAB id="tbclshop_config" cl="shop_config" />
                 <TAB id="tbclshop_system" cl="shop_system" />
-                <TAB id="tbclshop_license" cl="shop_license" disableForDemoShop="1" />
+                <TAB id="tbclshop_license" cl="shop_license"/>
                 <TAB id="tbclshop_performance" cl="shop_performance" />
                 <TAB id="tbclshop_seo" cl="shop_seo" />
                 <BTN id="shop_new" />
@@ -175,9 +175,9 @@
             </SUBMENU>
         </MAINMENU>
         <MAINMENU id="mxservice">
-            <SUBMENU id="mxsysinfo" cl="systeminfo" rights="malladmin" disableForDemoShop="1" />
-            <SUBMENU id="mxtools" cl="tools" list="tools_list" rights="malladmin" disableForDemoShop="1" >
-                <TAB id="tbcltools_main" cl="tools_main" disableForDemoShop="1" />
+            <SUBMENU id="mxsysinfo" cl="systeminfo" rights="malladmin" />
+            <SUBMENU id="mxtools" cl="tools" list="tools_list" rights="malladmin">
+                <TAB id="tbcltools_main" cl="tools_main" />
             </SUBMENU>
             <SUBMENU id="mxsysreq" cl="sysreq" list="sysreq_list">
                 <TAB id="tbclsysreq_main" cl="sysreq_main" />

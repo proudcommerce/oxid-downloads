@@ -19,7 +19,7 @@
  * @package setup
  * @copyright (C) OXID eSales AG 2003-2009
  * @version OXID eShop CE
- * $Id: lang.php 19886 2009-06-16 12:39:06Z alfonsas $
+ * $Id: lang.php 18135 2009-04-14 09:18:53Z philipp.grashoff $
  */
 
 $aLang = array(
@@ -72,7 +72,7 @@ $aLang = array(
 'MOD_PHPVERSION'                                  => 'PHP mindestens Version 5.2.0',
 'MOD_REQUEST_URI'                                 => 'REQUEST_URI vorhanden',
 'MOD_LIBXML2'                                     => 'LIB XML2',
-'MOD_PHP-XML'                                     => 'DOM',
+'MOD_PHP-XML'                                     => 'PHP XML',
 'MOD_JSON'                                        => 'JSON',
 'MOD_ICONV'                                       => 'ICONV',
 'MOD_TOKENIZER'                                   => 'Tokenizer',

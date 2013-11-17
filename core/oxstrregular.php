@@ -276,15 +276,15 @@ class oxStrRegular
 
     /**
      * Replaces special characters with passed char.
-     * Special chars are: " ' : ! ? \n \r \t x95 xa0 ;
+     * Special chars are: " ' . : ! ? \n \r \t x95 xa0 ;
      *
      * @param string $sStr      string to cleanup
      * @param object $sCleanChr which character should be used as a replacement (default is empty space)
      *
      * @return string
      */
-    public function cleanStr( $sStr, $sCleanChr = ' ', $aSkipChars = null )
+    public function cleanStr( $sStr, $sCleanChr = ' ' )
     {
-        return $this->preg_replace( "/\"|\'|\:|\!|\?|\n|\r|\t|\x95|\xa0|;/", $sCleanChr, $sStr );
+        return $this->preg_replace( "/\"|\'|\.|\:|\!|\?|\n|\r|\t|\x95|\xa0|;/", $sCleanChr, $sStr );
     }
 }

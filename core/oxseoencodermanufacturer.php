@@ -31,17 +31,8 @@ class oxSeoEncoderManufacturer extends oxSeoEncoder
 {
     /**
      * Singleton instance.
-     *
-     * @var oxmanufacturer
      */
     protected static $_instance = null;
-
-    /**
-     * Root manufacturer uri cache
-     *
-     * @var array
-     */
-    protected $_aRootManufacturerUri = null;
 
     /**
      * Singleton method
@@ -53,12 +44,6 @@ class oxSeoEncoderManufacturer extends oxSeoEncoder
         if (!self::$_instance) {
             self::$_instance = oxNew("oxSeoEncoderManufacturer");
         }
-
-        if ( defined( 'OXID_PHP_UNIT' ) ) {
-            // resetting cache
-            self::$_instance->_aSeoCache = array();
-        }
-
         return self::$_instance;
     }
 
@@ -78,20 +63,19 @@ class oxSeoEncoderManufacturer extends oxSeoEncoder
         // load from db
         if ( !( $sSeoUrl = $this->_loadFromDb( 'oxmanufacturer', $oManufacturer->getId(), $iLang ) ) ) {
 
-            if ( $iLang != $oManufacturer->getLanguage() ) {
+            if ($iLang != $oManufacturer->getLanguage()) {
                 $sId = $oManufacturer->getId();
-                $oManufacturer = oxNew('oxmanufacturer');
-                $oManufacturer->loadInLang( $iLang, $sId );
+                if ($sId == 'root') {
+                    $oManufacturer = oxManufacturer::getRootManufacturer( $iLang );
+                } else {
+                    $oManufacturer = oxNew('oxmanufacturer');
+                    $oManufacturer->loadInLang($iLang, $sId);
+                }
             }
 
             $sSeoUrl = '';
             if ( $oManufacturer->getId() != 'root' ) {
-                if ( !isset( $this->_aRootManufacturerUri[$iLang] ) ) {
-                    $oRootManufacturer = oxNew('oxmanufacturer');
-                    $oRootManufacturer->loadInLang( $iLang, 'root' );
-                    $this->_aRootManufacturerUri[$iLang] = $this->getManufacturerUri( $oRootManufacturer, $iLang );
-                }
-                $sSeoUrl .= $this->_aRootManufacturerUri[$iLang];
+                $sSeoUrl .= $this->getManufacturerUri( oxManufacturer::getRootManufacturer( $iLang ), $iLang );
             }
 
             $sSeoUrl .= $this->_prepareTitle( $oManufacturer->oxmanufacturers__oxtitle->value .'/' );

@@ -19,7 +19,7 @@
  * @package core
  * @copyright (C) OXID eSales AG 2003-2009
  * @version OXID eShop CE
- * $Id: oxpdf.php 19886 2009-06-16 12:39:06Z alfonsas $
+ * $Id: oxpdf.php 18994 2009-05-13 08:24:08Z arvydas $
  */
 
 $myConfig = oxConfig::getInstance();

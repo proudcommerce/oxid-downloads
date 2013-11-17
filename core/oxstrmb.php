@@ -310,7 +310,7 @@ class oxStrMb
 
     /**
      * Replaces special characters with passed char.
-     * Special chars are: " ' : ! ? \n \r \t \xc2\x95 \xc2\xa0 ;
+     * Special chars are: " ' . : ! ? \n \r \t \xc2\x95 \xc2\xa0 ;
      *
      * @param string $sStr      string to cleanup
      * @param object $sCleanChr which character should be used as a replacement (default is empty space)
@@ -319,6 +319,6 @@ class oxStrMb
      */
     public function cleanStr( $sStr, $sCleanChr = ' ' )
     {
-        return $this->preg_replace( "/\"|\'|\:|\!|\?|\n|\r|\t|\xc2\x95|\xc2\xa0|;/", $sCleanChr, $sStr );
+        return $this->preg_replace( "/\"|\'|\.|\:|\!|\?|\n|\r|\t|\xc2\x95|\xc2\xa0|;/", $sCleanChr, $sStr );
     }
 }

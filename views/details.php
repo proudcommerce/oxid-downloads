@@ -19,7 +19,7 @@
  * @package views
  * @copyright (C) OXID eSales AG 2003-2009
  * @version OXID eShop CE
- * $Id: details.php 19886 2009-06-16 12:39:06Z alfonsas $
+ * $Id: details.php 18934 2009-05-11 13:53:24Z vilma $
  */
 
 /**
@@ -211,13 +211,6 @@ class Details extends oxUBase
     protected $_blIsInitialized = false;
 
     /**
-     * Current view link type
-     *
-     * @var int
-     */
-    protected $_iLinkType = null;
-
-    /**
      * Returns current product parent article object if it is available
      *
      * @param string $sParentId parent product id
@@ -275,7 +268,7 @@ class Details extends oxUBase
 
             // setting link type for variants ..
             foreach ( $this->_aVariantList as $oVariant ) {
-                $oVariant->setLinkType( $this->getLinkType() );
+                $this->_setLinkType( $oVariant );
             }
 
         }
@@ -428,7 +421,7 @@ class Details extends oxUBase
      * If $sMeta parameter comes empty, sets to it article title and description.
      * It happens if current view has no meta data defined in oxcontent table
      *
-     * @param string $sMeta     user defined description, description content or empty value
+     * @param string $sMeta     category path
      * @param int    $iLength   max length of result, -1 for no truncation
      * @param bool   $blDescTag if true - performs additional dublicate cleaning
      *
@@ -439,7 +432,7 @@ class Details extends oxUBase
         if ( !$sMeta ) {
             $oProduct = $this->getProduct();
 
-            $sMeta = $oProduct->getArticleLongDesc()->value;
+            $sMeta = getStr()->strtolower( $oProduct->getArticleLongDesc()->value );
             $sMeta = str_replace( array( '<br>', '<br />', '<br/>' ), "\n", $sMeta );
             $sMeta = $oProduct->oxarticles__oxtitle->value.' - '.$sMeta;
             $sMeta = strip_tags( $sMeta );
@@ -452,35 +445,23 @@ class Details extends oxUBase
      * If $sKeywords parameter comes empty, sets to it article title and description.
      * It happens if current view has no meta data defined in oxcontent table
      *
-     * @param string $sKeywords               user defined keywords, keywords content or empty value
-     * @param bool   $blRemoveDuplicatedWords remove dublicated words
+     * @param string $sKeywords data to use as keywords
      *
      * @return string
      */
-    protected function _prepareMetaKeyword( $sKeywords, $blRemoveDuplicatedWords = true )
+    protected function _prepareMetaKeyword( $sKeywords )
     {
-        $myConfig = $this->getConfig();
-
         if ( !$sKeywords ) {
             $oProduct = $this->getProduct();
-            $aKeywords[] = trim( $this->getTitle() );
 
-            if ( $oCatTree = $this->getCategoryTree() ) {
-                foreach ( $oCatTree->getPath() as $oCat ) {
-                    $aKeywords[] = trim( $oCat->oxcategories__oxtitle->value );
-                }
+            $sKeywords = getStr()->strtolower( $oProduct->getArticleLongDesc()->value );
+            $sKeywords = str_replace( array( '<br>', '<br />', '<br/>' ), "\n", $sKeywords );
+            if ( trim( $oProduct->oxarticles__oxsearchkeys->value ) ) {
+                $sKeywords = $oProduct->oxarticles__oxsearchkeys->value.' '.$sKeywords;
             }
-
-            $sKeywords = implode( ", ", $aKeywords );
-
-            //adding searchkeys info
-            if ( $sSearchKeys = trim( $oProduct->oxarticles__oxsearchkeys->value ) ) {
-                $sSearchKeys = preg_replace( "/\s+/", ", ", $sSearchKeys );
-                $sKeywords .= ", " . $sSearchKeys;
-            }
+            $sKeywords = strip_tags( $sKeywords );
         }
-
-        return parent::_prepareMetaKeyword( $sKeywords, false );
+        return parent::_prepareMetaKeyword( $sKeywords );
     }
 
     /**
@@ -731,7 +712,7 @@ class Details extends oxUBase
                 $myUtils->showMessageAndExit( '' );
             }
 
-            $this->_oProduct->setLinkType( $this->getLinkType() );
+            $this->_setLinkType( $this->_oProduct );
             $this->_blIsInitialized = true;
         }
 
@@ -739,33 +720,25 @@ class Details extends oxUBase
     }
 
     /**
-     * Returns current view link type
+     * Sets link type for product
      *
-     * @param string $sListType current list type [optional]
+     * @param oxarticle $oProduct  product to set link type
+     * @param int       $iListType list type [optional]
      *
-     * @return int
+     * @return null
      */
-    public function getLinkType()
+    protected function _setLinkType( $oProduct, $iListType = null )
     {
-        if ( $this->_iLinkType === null ) {
-            $sListType = oxConfig::getParameter( 'listtype' );
-            if ( 'vendor' == $sListType ) {
-                $this->_iLinkType = OXARTICLE_LINKTYPE_VENDOR;
-            } elseif ( 'manufacturer' == $sListType ) {
-                $this->_iLinkType = OXARTICLE_LINKTYPE_MANUFACTURER;
-            } elseif ( 'tag' == $sListType ) {
-                $this->_iLinkType = OXARTICLE_LINKTYPE_TAG;
-            } else {
-                $this->_iLinkType = OXARTICLE_LINKTYPE_CATEGORY;
-
-                // price category has own type..
-                if ( ( $oCat = $this->getCategory() ) && $oCat->isPriceCategory() ) {
-                    $this->_iLinkType = OXARTICLE_LINKTYPE_PRICECATEGORY;
-                }
-            }
+        $sListType = isset( $iListType ) ? $iListType : oxConfig::getParameter( 'listtype' );
+        if ( 'vendor' == $sListType ) {
+            $iLinkType = OXARTICLE_LINKTYPE_VENDOR;
+        } elseif ( 'manufacturer' == $sListType ) {
+            $iLinkType = OXARTICLE_LINKTYPE_MANUFACTURER;
+        } else {
+            $iLinkType = OXARTICLE_LINKTYPE_CATEGORY;
         }
 
-        return $this->_iLinkType;
+        $oProduct->setLinkType( $iLinkType );
     }
 
     /**
@@ -1155,11 +1128,9 @@ class Details extends oxUBase
      * returns object, assosiated with current view.
      * (the object that is shown in frontend)
      *
-     * @param int $iLang language id
-     *
      * @return object
      */
-    protected function _getSubject( $iLang )
+    protected function _getSubject()
     {
         return $this->getProduct();
     }
@@ -1223,16 +1194,5 @@ class Details extends oxUBase
         if ( $oProduct = $this->getProduct() ) {
             return $oProduct->oxarticles__oxtitle->value . ( $oProduct->oxarticles__oxvarselect->value ? ' ' . $oProduct->oxarticles__oxvarselect->value : '' );
         }
-    }
-
-
-    /**
-     * Template variable getter. Returns current tag
-     *
-     * @return string
-     */
-    public function getTag()
-    {
-        return oxConfig::getParameter("searchtag", 1);
     }
 }

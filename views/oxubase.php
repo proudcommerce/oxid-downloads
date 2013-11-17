@@ -19,7 +19,7 @@
  * @package views
  * @copyright (C) OXID eSales AG 2003-2009
  * @version OXID eShop CE
- * $Id: oxubase.php 19752 2009-06-10 13:01:01Z arvydas $
+ * $Id: oxubase.php 18520 2009-04-24 08:10:19Z vilma $
  */
 
 /**
@@ -539,6 +539,9 @@ class oxUBase extends oxView
             $this->_blCommonAdded = true;
         }
 
+        // setting list type if needed
+        $this->_setListType();
+
         // storing current view
         $blInit = true;
 
@@ -705,12 +708,8 @@ class oxUBase extends oxView
      */
     public function getListType()
     {
-        if ( $this->_sListType == null ) {
-            if ( $sListType = oxConfig::getParameter( 'listtype' ) ) {
-                $this->_sListType = $sListType;
-            } elseif ( $sListType = $this->getConfig()->getGlobalParameter( 'listtype' ) ) {
-                $this->_sListType = $sListType;
-            }
+        if ( $this->_sListType == null && ( $sListType = oxConfig::getParameter( 'listtype' ) ) ) {
+            $this->_sListType = $sListType;
         }
         return $this->_sListType;
     }
@@ -725,7 +724,6 @@ class oxUBase extends oxView
     public function setListType( $sType )
     {
         $this->_sListType = $sType;
-        $this->getConfig()->setGlobalParameter( 'listtype', $sType );
     }
 
     /**
@@ -1076,7 +1074,6 @@ class oxUBase extends oxView
                     $this->_sMetaKeywords = strip_tags( $oContent->oxcontents__oxcontent->value );
                 }
             }
-
             $this->_sMetaKeywords = $this->_prepareMetaKeyword( $this->_sMetaKeywords );
         }
         return $this->_sMetaKeywords;
@@ -1094,17 +1091,15 @@ class oxUBase extends oxView
             // set special meta description ?
             if ( oxUtils::getInstance()->seoIsActive() && ( $sOxid = $this->_getSeoObjectId() ) &&
                  ( $sMeta = oxSeoEncoder::getInstance()->getMetaData( $sOxid, 'oxdescription' ) ) ) {
-                     return $this->_sMetaDescription = $sMeta;
+                return $this->_sMetaDescription = $sMeta;
             } elseif ( $this->_sMetaDescriptionIdent ) {
                 $oContent = oxNew( 'oxcontent' );
                 if ( $oContent->loadByIdent( $this->_sMetaDescriptionIdent ) && $oContent->oxcontents__oxactive->value ) {
                     $this->_sMetaDescription = strip_tags( $oContent->oxcontents__oxcontent->value );
                 }
             }
-
             $this->_sMetaDescription = $this->_prepareMetaDescription( $this->_sMetaDescription );
         }
-
         return $this->_sMetaDescription;
     }
 
@@ -1333,13 +1328,13 @@ class oxUBase extends oxView
     /**
      * Returns current view meta description data
      *
-     * @param string $sMeta                   category path
-     * @param int    $iLength                 max length of result, -1 for no truncation
-     * @param bool   $blRemoveDuplicatedWords if true - performs additional dublicate cleaning
+     * @param string $sMeta     category path
+     * @param int    $iLength   max length of result, -1 for no truncation
+     * @param bool   $blDescTag if true - performs additional dublicate cleaning
      *
      * @return  string  $sString    converted string
      */
-    protected function _prepareMetaDescription( $sMeta, $iLength = 1024, $blRemoveDuplicatedWords = false )
+    protected function _prepareMetaDescription( $sMeta, $iLength = 1024, $blDescTag = false )
     {
         if ( $sMeta ) {
 
@@ -1363,7 +1358,7 @@ class oxUBase extends oxView
             $sMeta = $oStr->cleanStr( $sMeta );
 
             // removing duplicate words
-            if ( $blRemoveDuplicatedWords ) {
+            if ( $blDescTag ) {
                 $sMeta = $this->_removeDuplicatedWords( $sMeta );
             }
 
@@ -1384,19 +1379,13 @@ class oxUBase extends oxView
      *
      * @return string of keywords seperated by comma
      */
-    protected function _prepareMetaKeyword( $sKeywords, $blRemoveDuplicatedWords = true )
+    protected function _prepareMetaKeyword( $sKeywords )
     {
-
         $sString = $this->_prepareMetaDescription( $sKeywords, -1, false );
-
         $aSkipTags = $this->getConfig()->getConfigParam( 'aSkipTags' );
-
-        if ( $blRemoveDuplicatedWords ) {
-            $sString = $this->_removeDuplicatedWords( $sString, $aSkipTags );
-        }
-
+        $sString = $this->_removeDuplicatedWords( $sString, $aSkipTags );
         // removing in admin defined strings
-
+        
         /*if ( is_array( $aSkipTags ) && $sString ) {
             $oStr = getStr();
             foreach ( $aSkipTags as $sSkip ) {
@@ -1406,7 +1395,6 @@ class oxUBase extends oxView
                 $sString  = $oStr->preg_replace( $aPattern, '', $sString );
             }
         }*/
-
         return trim( $sString );
     }
 
@@ -1438,7 +1426,7 @@ class oxUBase extends oxView
             $aStrings[$iNum] = $oStr->strtolower( $aStrings[$iNum] );
             // removing in admin defined strings
             if ( in_array( $aStrings[$iNum], $aSkipTags ) ) {
-              unset( $aStrings[$iNum] );
+            	unset( $aStrings[$iNum] );
             }
         }
 
@@ -1547,11 +1535,9 @@ class oxUBase extends oxView
      * returns object, assosiated with current view.
      * (the object that is shown in frontend)
      *
-     * @param int $iLang language id
-     *
      * @return object
      */
-    protected function _getSubject( $iLang )
+    protected function _getSubject()
     {
         return null;
     }
@@ -1612,7 +1598,7 @@ class oxUBase extends oxView
         $oDisplayObj = null;
         if ( oxUtils::getInstance()->seoIsActive() ) {
             $blTrySeo = true;
-            $oDisplayObj = $this->_getSubject( $iLang );
+            $oDisplayObj = $this->_getSubject();
         }
         $iActPageNr = $this->getActPage();
 
@@ -1622,7 +1608,7 @@ class oxUBase extends oxView
             if ( $oDisplayObj->getLanguage() != $iLang ) {
                 $sOxId = $oDisplayObj->getId();
                 $oDisplayObj = oxNew( $oDisplayObj->getClassName() );
-                $oDisplayObj->loadInLang( $iLang, $sOxId );
+                $oDisplayObj->load( $sOxId );
             }
 
             return $this->_addPageNrParam( $oDisplayObj->getLink( $iLang ), $iActPageNr, $iLang );
@@ -2054,6 +2040,18 @@ class oxUBase extends oxView
     }
 
     /**
+     * Sets active list type if it was not set by request
+     *
+     * @return null
+     */
+    protected function _setListType()
+    {
+        if ( !oxConfig::getParameter( 'listtype' ) && isset( $this->_sListType ) ) {
+            $this->getConfig()->setGlobalParameter( 'listtype', $this->_sListType );
+        }
+    }
+
+    /**
      * Generates URL for page navigation
      *
      * @return string $sUrl String with working page url.
@@ -2293,15 +2291,10 @@ class oxUBase extends oxView
     {
         if ( $this->_oActTag === null ) {
             $this->_oActTag = new Oxstdclass();
-            $this->_oActTag->sTag = $sTag = oxConfig::getParameter("searchtag", 1);
-            $oSeoEncoderTag = oxSeoEncoderTag::getInstance();
+            $this->_oActTag->sTag = oxConfig::getParameter("searchtag", 1);
 
-            if ( oxUtils::getInstance()->seoIsActive() ) {
-                $this->_oActTag->link = $oSeoEncoderTag->getTagUrl( $sTag, oxLang::getInstance()->getBaseLanguage() );
-            } else {
-                $this->_oActTag->link = $this->getConfig()->getShopHomeURL().$oSeoEncoderTag->getStdTagUri( $sTag, false );
-            }
-
+            $sUrl = $this->getConfig()->getShopHomeURL();
+            $this->_oActTag->link = "{$sUrl}cl=tag";
         }
         return $this->_oActTag;
     }
@@ -2322,9 +2315,13 @@ class oxUBase extends oxView
             $this->_oActVendor = false;
             $sVendorId = oxConfig::getParameter( 'cnid' );
             $sVendorId = $sVendorId ? str_replace( 'v_', '', $sVendorId ) : $sVendorId;
-            $oVendor = oxNew( 'oxvendor' );
-            if ( $oVendor->load( $sVendorId ) ) {
-                $this->_oActVendor = $oVendor;
+            if ( 'root' == $sVendorId ) {
+                $this->_oActVendor = oxVendor::getRootVendor();
+            } elseif ( $sVendorId ) {
+                $oVendor = oxNew( 'oxvendor' );
+                if ( $oVendor->load( $sVendorId ) ) {
+                    $this->_oActVendor = $oVendor;
+                }
             }
         }
 
@@ -2347,9 +2344,13 @@ class oxUBase extends oxView
 
             $this->_oActManufacturer = false;
             $sManufacturerId = oxConfig::getParameter( 'mnid' );
-            $oManufacturer = oxNew( 'oxmanufacturer' );
-            if ( $oManufacturer->load( $sManufacturerId ) ) {
-                $this->_oActManufacturer = $oManufacturer;
+            if ( 'root' == $sManufacturerId ) {
+                $this->_oActManufacturer = oxManufacturer::getRootManufacturer();
+            } elseif ( $sManufacturerId ) {
+                $oManufacturer = oxNew( 'oxmanufacturer' );
+                if ( $oManufacturer->load( $sManufacturerId ) ) {
+                    $this->_oActManufacturer = $oManufacturer;
+                }
             }
         }
 
@@ -2526,8 +2527,8 @@ class oxUBase extends oxView
     protected function _processListArticles()
     {
         $sAddParams = $this->getAddUrlParams();
-        if ( $sAddParams && ( $oArticleList = $this->getArticleList() ) ) {
-            foreach ( $oArticleList as $oArticle ) {
+        if ( $sAddParams && $this->_aArticleList ) {
+            foreach ( $this->_aArticleList as $oArticle ) {
                 $oArticle->appendLink( $sAddParams );
             }
         }
@@ -2550,17 +2551,19 @@ class oxUBase extends oxView
      */
     public function getTop5ArticleList()
     {
-        if ( $this->_blTop5Action ) {
-            if ( $this->_aTop5ArticleList === null ) {
-                $this->_aTop5ArticleList = false;
-                $myConfig = $this->getConfig();
-                if ( $myConfig->getConfigParam( 'bl_perfLoadAktion' ) ) {
-                    // top 5 articles
-                    $oArtList = oxNew( 'oxarticlelist' );
-                    $oArtList->loadTop5Articles();
-                    if ( $oArtList->count() ) {
-                        $this->_aTop5ArticleList = $oArtList;
-                    }
+        if ( !$this->_blTop5Action ) {
+            return null;
+        }
+
+        if ( $this->_aTop5ArticleList === null ) {
+            $this->_aTop5ArticleList = false;
+            $myConfig = $this->getConfig();
+            if ( $myConfig->getConfigParam( 'bl_perfLoadAktion' ) ) {
+                // top 5 articles
+                $oArtList = oxNew( 'oxarticlelist' );
+                $oArtList->loadTop5Articles();
+                if ( $oArtList->count() ) {
+                    $this->_aTop5ArticleList = $oArtList;
                 }
             }
         }
@@ -2575,15 +2578,17 @@ class oxUBase extends oxView
      */
     public function getBargainArticleList()
     {
-        if ( $this->_blBargainAction ) {
-            if ( $this->_aBargainArticleList === null ) {
-                $this->_aBargainArticleList = array();
-                if ( $this->getConfig()->getConfigParam( 'bl_perfLoadAktion' ) ) {
-                    $oArtList = oxNew( 'oxarticlelist' );
-                    $oArtList->loadAktionArticles( 'OXBARGAIN' );
-                    if ( $oArtList->count() ) {
-                        $this->_aBargainArticleList = $oArtList;
-                    }
+        if ( !$this->_blBargainAction ) {
+            return null;
+        }
+
+        if ( $this->_aBargainArticleList === null ) {
+            $this->_aBargainArticleList = array();
+            if ( $this->getConfig()->getConfigParam( 'bl_perfLoadAktion' ) ) {
+                $oArtList = oxNew( 'oxarticlelist' );
+                $oArtList->loadAktionArticles( 'OXBARGAIN' );
+                if ( $oArtList->count() ) {
+                    $this->_aBargainArticleList = $oArtList;
                 }
             }
         }

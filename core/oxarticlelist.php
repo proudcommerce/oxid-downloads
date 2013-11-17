@@ -19,7 +19,7 @@
  * @package core
  * @copyright (C) OXID eSales AG 2003-2009
  * @version OXID eShop CE
- * $Id: oxarticlelist.php 19349 2009-05-25 11:34:37Z arvydas $
+ * $Id: oxarticlelist.php 18911 2009-05-08 14:26:45Z vilma $
  */
 
 /**
@@ -712,7 +712,6 @@ class oxArticleList extends oxList
         $oBaseObject    = $this->getBaseObject();
         $sArticleTable  = $oBaseObject->getViewName();
         $sArticleFields = $oBaseObject->getSelectFields();
-        $sArticleFields = str_replace( "$sArticleTable.oxid", "oxorderarticles.oxartid as oxid", $sArticleFields );
 
         $sSelect  = "SELECT $sArticleFields FROM oxorderarticles ";
         $sSelect .= "left join $sArticleTable on oxorderarticles.oxartid = $sArticleTable.oxid ";
@@ -720,13 +719,6 @@ class oxArticleList extends oxList
         $sSelect .= "order by $sArticleTable.oxid ";
 
         $this->selectString( $sSelect );
-
-        // not active or not available products must not have button "tobasket"
-        foreach ( $this as $oArticle ) {
-            if ( !$oArticle->oxarticles__oxactive->value ) {
-                $oArticle->setBuyableState( false );
-            }
-        }
     }
 
     /**

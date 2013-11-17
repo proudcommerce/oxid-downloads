@@ -19,7 +19,7 @@
  * @package views
  * @copyright (C) OXID eSales AG 2003-2009
  * @version OXID eShop CE
- * $Id: content.php 19632 2009-06-05 13:14:07Z arvydas $
+ * $Id: content.php 18089 2009-04-10 13:18:52Z vilma $
  */
 
 /**
@@ -140,12 +140,12 @@ class Content extends oxUBase
      *
      * @return string
      */
-    protected function _prepareMetaKeyword( $sKeywords, $blRemoveDuplicatedWords = true )
+    protected function _prepareMetaKeyword( $sKeywords )
     {
         if ( !$sKeywords ) {
             $sKeywords = $this->getContent()->oxcontents__oxtitle->value;
         }
-        return parent::_prepareMetaKeyword( $sKeywords, $blRemoveDuplicatedWords );
+        return parent::_prepareMetaKeyword( $sKeywords );
     }
 
     /**
@@ -237,11 +237,9 @@ class Content extends oxUBase
      * returns object, assosiated with current view.
      * (the object that is shown in frontend)
      *
-     * @param int $iLang language id
-     *
      * @return object
      */
-    protected function _getSubject( $iLang )
+    protected function _getSubject()
     {
         return $this->getContent();
     }

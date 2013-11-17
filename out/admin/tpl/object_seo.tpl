@@ -92,7 +92,7 @@ function SetSticker( sStickerId, oObject)
                 [{assign var="blCat" value="1"}]
                 <optgroup label="[{ oxmultilang ident="GENERAL_SEO_CAT" }]">
                 [{ foreach from=$oCategories item=oCategory }]
-                <option value="oxcategory#[{if $oCategory->isPriceCategory() }][{ $oCategory->getId() }][{else}][{$oCategory->oxcategories__oxrootid->value}][{/if}]" [{if ( $oCategory->isPriceCategory() && $sCatId == $oCategory->getId() ) || $sCatId == $oCategory->oxcategories__oxrootid->value}]selected[{/if}]>[{$oCategory->oxcategories__oxtitle->value}]</option>
+                <option value="oxcategory#[{$oCategory->oxcategories__oxrootid->value}]" [{if $sCatId == $oCategory->oxcategories__oxrootid->value}]selected[{/if}]>[{$oCategory->oxcategories__oxtitle->value}]</option>
                 [{ /foreach }]
                 </optgroup>
               [{/if}]
@@ -111,15 +111,6 @@ function SetSticker( sStickerId, oObject)
                 <optgroup label="[{ oxmultilang ident="GENERAL_SEO_MANUFACTURER" }]">
                 [{ foreach from=$oManufacturers item=oManufacturer }]
                 <option value="oxmanufacturer#[{$oManufacturer->oxmanufacturers__oxid->value}]" [{if $sCatType && $sCatType == 'oxmanufacturer' && $sCatId == $oManufacturer->oxmanufacturers__oxid->value}]selected[{/if}]>[{$oManufacturer->oxmanufacturers__oxtitle->value}]</option>
-                [{ /foreach }]
-                </optgroup>
-              [{/if}]
-
-              [{ if $oTags && count($oTags) }]
-                [{assign var="blCat" value="1"}]
-                <optgroup label="[{ oxmultilang ident="GENERAL_SEO_TAG" }]">
-                [{ foreach from=$oTags key=sTag item=sItem }]
-                <option value="oxtag#[{$sTag}]" [{if $sCatType && $sCatType == 'oxtag' && $sCatId == $sTag}]selected[{/if}]>[{$sTag}]</option>
                 [{ /foreach }]
                 </optgroup>
               [{/if}]

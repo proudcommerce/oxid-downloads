@@ -19,7 +19,7 @@
  * @package smartyPlugins
  * @copyright (C) OXID eSales AG 2003-2009
  * @version OXID eShop CE
- * $Id: modifier.oxaddparams.php 19252 2009-05-21 07:52:04Z arvydas $
+ * $Id: modifier.oxaddparams.php 17696 2009-03-31 12:38:49Z vilma $
  */
 
 /*
@@ -37,5 +37,10 @@ function smarty_modifier_oxaddparams( $sUrl, $sDynParams )
     if ( $sDynParams ) {
         $sUrl .= ( ( strpos( $sUrl, '?' ) !== false ) ? "&amp;":"?" ) . $sDynParams;
     }
-    return oxSession::getInstance()->processUrl( $sUrl );
+    /* not used yet, not required (getSimplifyUriParams is also commented out)
+    if (oxUtils::getInstance()->seoIsActive()) {
+        $sUrl = oxSeoEncoder::getInstance()->getSimplifyUriParams($sUrl);
+    }
+    */
+    return $sUrl;
 }

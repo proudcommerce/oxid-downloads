@@ -19,7 +19,7 @@
  * @package views
  * @copyright (C) OXID eSales AG 2003-2009
  * @version OXID eShop CE
- * $Id: register.php 19252 2009-05-21 07:52:04Z arvydas $
+ * $Id: register.php 18044 2009-04-09 12:25:33Z arvydas $
  */
 
 /**
@@ -34,12 +34,6 @@ class Register extends User
      * @var string
      */
     protected $_sThisTemplate = 'register.tpl';
-
-    /**
-     * Order step marker
-     * @var bool
-     */
-    protected $_blIsOrderStep = false;
 
     /**
      * Successful registration confirmation template

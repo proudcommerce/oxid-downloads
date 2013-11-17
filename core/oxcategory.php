@@ -19,7 +19,7 @@
  * @package core
  * @copyright (C) OXID eSales AG 2003-2009
  * @version OXID eShop CE
- * $Id: oxcategory.php 19455 2009-05-28 11:56:34Z arvydas $
+ * $Id: oxcategory.php 18292 2009-04-16 14:30:45Z rimvydas.paskevicius $
  */
 
 /**
@@ -191,7 +191,7 @@ class oxCategory extends oxI18n
         }
 
         if ( !$this->isAdmin() && ( $myConfig->getConfigParam( 'bl_perfShowActionCatArticleCnt' ) || $myConfig->getConfigParam('blDontShowEmptyCategories')  ) ) {
-            if ( $this->isPriceCategory() ) {
+            if ( $this->oxcategories__oxpricefrom->value || $this->oxcategories__oxpriceto->value ) {
                 $this->_iNrOfArticles = oxUtilsCount::getInstance()->getPriceCatArticleCount( $this->getId(), $this->oxcategories__oxpricefrom->value, $this->oxcategories__oxpriceto->value );
             } else {
                 $this->_iNrOfArticles = oxUtilsCount::getInstance()->getCatArticleCount( $this->getId() );
@@ -714,7 +714,7 @@ class oxCategory extends oxI18n
     public function getCatInLang( $oActCategory = null )
     {
         $oCategoryInDefaultLanguage= oxNew( "oxcategory" );
-        if ( $this->isPriceCategory() ) {
+        if ( $this->oxcategories__oxpricefrom->value || $this->oxcategories__oxpriceto->value) {
             // get it in base language
             $oCategoryInDefaultLanguage= oxNew( "oxcategory" );
             $oCategoryInDefaultLanguage->loadInLang( 0, $this->getId());
@@ -997,15 +997,5 @@ class oxCategory extends oxI18n
             $this->_blTopCategory = $this->oxcategories__oxparentid->value == 'oxrootid';
         }
         return $this->_blTopCategory;
-    }
-
-    /**
-     * Returns true if current category is price type ( ( oxpricefrom || oxpriceto ) > 0 )
-     *
-     * @return bool
-     */
-    public function isPriceCategory()
-    {
-        return (bool) ( $this->oxcategories__oxpricefrom->value || $this->oxcategories__oxpriceto->value );
     }
 }

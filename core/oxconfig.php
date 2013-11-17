@@ -19,7 +19,7 @@
  * @package core
  * @copyright (C) OXID eSales AG 2003-2009
  * @version OXID eShop CE
- * $Id: oxconfig.php 19886 2009-06-16 12:39:06Z alfonsas $
+ * $Id: oxconfig.php 18789 2009-05-05 08:34:18Z arvydas $
  */
 
 define( 'MAX_64BIT_INTEGER', '18446744073709551615' );
@@ -133,6 +133,13 @@ class oxConfig extends oxSuperCfg
      * @var bool
      */
     protected $blSessionUseCookies = null;
+
+    /**
+     * Force user to use cookies
+     *
+     * @var bool
+     */
+    protected $blSessionEnforceCookies = null;
 
     /**
      * Default max article count in select lists
@@ -493,6 +500,13 @@ class oxConfig extends oxSuperCfg
                         break;
                     default:
                         $this->setConfigParam( $sVarName, $sVarVal );
+                }
+
+
+                if ( $sVarType == 'arr' || $sVarType == 'aarr' ) {
+                } elseif ( $sVarType == 'bool' ) {
+                } else {
+
                 }
 
                 $oRs->moveNext();

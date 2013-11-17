@@ -19,7 +19,7 @@
  * @package core
  * @copyright (C) OXID eSales AG 2003-2009
  * @version OXID eShop CE
- * $Id: oxutilsview.php 19870 2009-06-16 11:18:11Z sarunas $
+ * $Id: oxutilsview.php 18165 2009-04-15 07:25:36Z arvydas $
  */
 
 /**
@@ -255,11 +255,6 @@ class oxUtilsView extends oxSuperCfg
         } else {
             $oSmarty->php_handling = SMARTY_PHP_REMOVE;
             $oSmarty->security     = true;
-            $oSmarty->security_settings['IF_FUNCS'][] = 'XML_ELEMENT_NODE';
-            $oSmarty->security_settings['MODIFIER_FUNCS'][] = 'round';
-            $oSmarty->security_settings['MODIFIER_FUNCS'][] = 'trim';
-            $oSmarty->security_settings['MODIFIER_FUNCS'][] = 'is_array';
-            $oSmarty->security_settings['ALLOW_CONSTANTS'] = true;
         }
 
         $oSmarty->left_delimiter  = '[{';

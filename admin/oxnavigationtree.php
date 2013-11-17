@@ -19,7 +19,7 @@
  * @package admin
  * @copyright (C) OXID eSales AG 2003-2009
  * @version OXID eShop CE
- * $Id: oxnavigationtree.php 19835 2009-06-15 06:57:28Z sarunas $
+ * $Id: oxnavigationtree.php 17442 2009-03-19 13:36:46Z arvydas $
  */
 
 /**
@@ -57,35 +57,6 @@ class OxNavigationTree extends oxSuperCfg
             // removes items denied by user rights
             $this->_checkRights( $oDom );
 
-            // check config params
-            $this->_checkDemoShopDenials( $oDom );
-
-
-            $this->_cleanEmptyParents($oDom, '//SUBMENU[@id][@list]', 'TAB');
-            $this->_cleanEmptyParents($oDom, '//MAINMENU[@id]', 'SUBMENU');
-        }
-    }
-
-    /**
-     * clean empty nodes from tree
-     *
-     * @param object $oDom         dom object
-     * @param string $sParentXPath parent xpath
-     * @param string $sChildXPath  child xpath from parent
-     *
-     * @return null
-     */
-    protected function _cleanEmptyParents($oDom, $sParentXPath, $sChildXPath)
-    {
-        $oXPath = new DomXPath( $oDom );
-        $oNodeList = $oXPath->query( $sParentXPath );
-
-        foreach ( $oNodeList as $oNode ) {
-            $sId = $oNode->getAttribute( 'id' );
-            $oChildList = $oXPath->query( "{$sParentXPath}[@id='$sId']/$sChildXPath" );
-            if (!$oChildList->length) {
-                $oNode->parentNode->removeChild( $oNode );
-            }
         }
     }
 
@@ -266,29 +237,6 @@ class OxNavigationTree extends oxSuperCfg
                         $oNode->parentNode->removeChild($oNode);
                     }
                 }
-            }
-        }
-    }
-
-    /**
-     * Removes form tree elements if this is demo shop and elements have disableForDemoShop="1"
-     *
-     * @param DOMDocument $oDom document to check group
-     *
-     * @return null
-     */
-    protected function _checkDemoShopDenials( $oDom )
-    {
-        if (!$this->getConfig()->isDemoShop()) {
-            // nothing to check for non demo shop
-            return;
-        }
-
-        $oXPath    = new DomXPath( $oDom );
-        $oNodeList = $oXPath->query( "//*[@disableForDemoShop]" );
-        foreach ( $oNodeList as $oNode ) {
-            if ( $oNode->getAttribute('disableForDemoShop') ) {
-                $oNode->parentNode->removeChild($oNode);
             }
         }
     }
@@ -559,7 +507,7 @@ class OxNavigationTree extends oxSuperCfg
                 $sDynLang = $this->_getDynMenuLang();
                 $sCacheFile = $this->getConfig()->getConfigParam( 'sCompileDir' ) . "/ox{$sVersionPrefix}"."c_menu_{$sDynLang}_xml.txt";
 
-                $sCacheContents = $myOxUtlis->fromFileCache( 'menu_' . $sDynLang . '_xml' );
+                $sCacheContents = $myOxUtlis->fromFileCache( 'menu_xml' );
 
                 if ( $sCacheContents && file_exists( $sCacheFile ) && ( $iCacheModTime = filemtime( $sCacheFile ) ) ) {
                     foreach ( $aFilesToLoad as $sDynPath ) {
@@ -572,7 +520,7 @@ class OxNavigationTree extends oxSuperCfg
                 }
 
                 // fully reloading and building pathes
-                if ( true || $blReload ) {
+                if ( $blReload ) {
 
                     foreach ( $aFilesToLoad as $sDynPath ) {
                         $this->_loadFromFile( $sDynPath );

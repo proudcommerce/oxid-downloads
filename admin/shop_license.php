@@ -19,7 +19,7 @@
  * @package admin
  * @copyright (C) OXID eSales AG 2003-2009
  * @version OXID eShop CE
- * $Id: shop_license.php 19793 2009-06-11 14:43:24Z sarunas $
+ * $Id: shop_license.php 17243 2009-03-16 15:16:57Z arvydas $
  */
 
 /**
@@ -48,9 +48,6 @@ class Shop_License extends Shop_Config
     public function render()
     {
         $myConfig   = $this->getConfig();
-        if ($myConfig->isDemoShop()) {
-            throw new oxSystemComponentException("license");
-        }
 
         parent::render();
 

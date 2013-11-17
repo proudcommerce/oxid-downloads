@@ -19,7 +19,7 @@
  * @package core
  * @copyright (C) OXID eSales AG 2003-2009
  * @version OXID eShop CE
- * $Id: oxvendorlist.php 19752 2009-06-10 13:01:01Z arvydas $
+ * $Id: oxvendorlist.php 17414 2009-03-19 09:48:33Z arvydas $
  */
 
 /**
@@ -125,8 +125,7 @@ class oxVendorList extends oxList
 
 
         //Create fake vendor root category
-        $this->_oRoot = oxNew( "oxVendor" );
-        $this->_oRoot->load( 'root' );
+        $this->_oRoot = oxVendor::getRootVendor();
 
         //category fields
         $this->_addCategoryFields( $this->_oRoot );

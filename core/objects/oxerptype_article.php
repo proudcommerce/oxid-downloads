@@ -19,7 +19,7 @@
  * @package core
  * @copyright (C) OXID eSales AG 2003-2009
  * @version OXID eShop CE
- * $Id: oxerptype_article.php 19206 2009-05-19 11:14:40Z arvydas $
+ * $Id: oxerptype_article.php 18030 2009-04-09 11:36:21Z arvydas $
  */
 
 require_once 'oxerptype.php';
@@ -245,7 +245,7 @@ class oxERPType_Article extends oxERPType
             'OXSOLDAMOUNT' => 'OXSOLDAMOUNT',
             'OXNONMATERIAL' => 'OXNONMATERIAL',
             'OXFREESHIPPING' => 'OXFREESHIPPING',
-            'OXREMINDACTIVE' => 'OXREMINDACTIVE',
+            'OXREMINDACTIV' => 'OXREMINDACTIV',
             'OXREMINDAMOUNT' => 'OXREMINDAMOUNT',
             'OXAMITEMID' => 'OXAMITEMID',
             'OXAMTASKID' => 'OXAMTASKID',
@@ -261,8 +261,6 @@ class oxERPType_Article extends oxERPType
             'OXLONGDESC_1'     => 'OXLONGDESC_1',
             'OXLONGDESC_2'     => 'OXLONGDESC_2',
             'OXLONGDESC_3'     => 'OXLONGDESC_3',
-            'OXBUNDLEID'       => 'OXBUNDLEID',
-            'OXMANUFACTURERID' => 'OXMANUFACTURERID',
         ),
     );
 

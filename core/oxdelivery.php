@@ -19,7 +19,7 @@
  * @package core
  * @copyright (C) OXID eSales AG 2003-2009
  * @version OXID eShop CE
- * $Id: oxdelivery.php 19551 2009-06-02 08:36:03Z arvydas $
+ * $Id: oxdelivery.php 17789 2009-04-02 14:21:44Z vilma $
  */
 
 /**
@@ -243,18 +243,6 @@ class oxDelivery extends oxI18n
     }
 
     /**
-     * Delivery price setter
-     *
-     * @param oxprice $oPrice delivery price to set
-     *
-     * @return null
-     */
-    public function setDeliveryPrice( $oPrice )
-    {
-        $this->_oPrice = $oPrice;
-    }
-
-    /**
      * Returns oxprice object for delivery costs
      *
      * @param double $dVat delivery vat
@@ -263,8 +251,8 @@ class oxDelivery extends oxI18n
      */
     public function getDeliveryPrice( $dVat = null )
     {
-        if ( $this->_oPrice === null ) {
-            // loading oxprice object for final price calculation
+        // loading oxprice object for final price calculation
+        if ( !$this->_oPrice ) {
             $this->_oPrice = oxNew( 'oxPrice' );
 
             if ( !$this->_blDelVatOnTop ) {
@@ -274,35 +262,35 @@ class oxDelivery extends oxI18n
             }
 
             $this->_oPrice->setVat( $dVat );
+        }
 
-            // if article is free shipping, price for delivery will be not calculated
-            if ( $this->_blFreeShipping ) {
-                return $this->_oPrice;
-            }
+        // if article is free shipping, price for delivery will be not calculated
+        if ( $this->_blFreeShipping ) {
+            return $this->_oPrice;
+        }
 
-            // calculating base price value
-            switch ( $this->oxdelivery__oxaddsumtype->value ) {
-                case 'abs':
+        // calculating base price value
+        switch ( $this->oxdelivery__oxaddsumtype->value ) {
+            case 'abs':
 
-                    $dAmount = 0;
+                $dAmount = 0;
 
-                    if ( $this->oxdelivery__oxfixed->value == 0 ) { // 1. Once per Cart
-                        $dAmount = 1;
-                    } elseif ( $this->oxdelivery__oxfixed->value == 1 ) { // 2. Once per Product overall
-                        $dAmount = $this->_iProdCnt;
-                    } elseif ( $this->oxdelivery__oxfixed->value == 2 ) { // 3. Once per Product in Cart
-                        $dAmount = $this->_iItemCnt;
-                    }
+                if ( $this->oxdelivery__oxfixed->value == 0 ) { // 1. Once per Cart
+                    $dAmount = 1;
+                } elseif ( $this->oxdelivery__oxfixed->value == 1 ) { // 2. Once per Product overall
+                    $dAmount = $this->_iProdCnt;
+                } elseif ( $this->oxdelivery__oxfixed->value == 2 ) { // 3. Once per Product in Cart
+                    $dAmount = $this->_iItemCnt;
+                }
 
-                    $oCur = $this->getConfig()->getActShopCurrencyObject();
-                    $this->_oPrice->add( $this->oxdelivery__oxaddsum->value * $oCur->rate );
-                    $this->_oPrice->multiply( $dAmount );
-                    break;
-                case '%':
+                $oCur = $this->getConfig()->getActShopCurrencyObject();
+                $this->_oPrice->add( $this->oxdelivery__oxaddsum->value * $oCur->rate );
+                $this->_oPrice->multiply( $dAmount );
+                break;
+            case '%':
 
-                    $this->_oPrice->add( $this->_dPrice /100 * $this->oxdelivery__oxaddsum->value );
-                    break;
-            }
+                $this->_oPrice->add( $this->_dPrice /100 * $this->oxdelivery__oxaddsum->value );
+                break;
         }
 
         // calculating total price

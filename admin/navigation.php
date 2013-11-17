@@ -19,7 +19,7 @@
  * @package admin
  * @copyright (C) OXID eSales AG 2003-2009
  * @version OXID eShop CE
- * $Id: navigation.php 19850 2009-06-15 13:40:58Z rimvydas.paskevicius $
+ * $Id: navigation.php 18937 2009-05-11 14:18:53Z alfonsas $
  */
 
 /**
@@ -49,7 +49,6 @@ class Navigation extends oxAdminView
             }
 
         } else {
-
             // set menu structure
             $this->_aViewData["menustructure"] =  $this->getNavigation()->getDomXml()->documentElement->childNodes;
 
@@ -57,21 +56,13 @@ class Navigation extends oxAdminView
             $sVersion = str_replace( array("EE.","PE."), "", $this->_sShopVersion);
             $this->_aViewData["sVersion"] =  trim($sVersion);
 
-            //checking requirements if this is not nav frame reload
-            if ( !oxConfig::getParameter( "navReload" ) ) {
-                // #661 execute stuff we run each time when we start admin once
-                if ('home.tpl' == $sItem) {
-                    $this->_aViewData['aMessage'] = $this->_doStartUpChecks();
-                }
-            } else {
-                //removing reload param to force requirements checking next time
-                oxSession::deleteVar( "navReload" );
-            }
+            // #661 execute stuff we run each time when we start admin once
+            $this->_aViewData['aMessage'] = $this->_doStartUpChecks();
 
             // favorite navigation
             $aFavorites = explode('|',$myUtilsServer->getOxCookie('oxidadminfavorites'));
 
-            if ( is_array ( $aFavorites ) && count( $aFavorites ) ) {
+            if(is_array($aFavorites) && count($aFavorites)) {
                  $this->_aViewData["menufavorites"] = $this->getNavigation()->getListNodes($aFavorites);
                  $this->_aViewData["aFavorites"]    = $aFavorites;
             }
@@ -211,8 +202,6 @@ class Navigation extends oxAdminView
 */
         // check if system reguirements are ok
         $oSysReq = new oxSysRequirements();
-
-
         if ( !$oSysReq->getSysReqStatus() ) {
             $aMessage['warning']  = oxLang::getInstance()->translateString('NAVIGATION_SYSREQ_MESSAGE');
             $aMessage['warning'] .= '<a href="?cl=sysreq" target="basefrm">';
@@ -222,12 +211,6 @@ class Navigation extends oxAdminView
         // version check
         if ( $sVersionNotice = $this->_checkVersion() ) {
             $aMessage['message'] .= $sVersionNotice;
-        }
-
-
-        // check if setup dir is deleted
-        if ( file_exists( $this->getConfig()->getConfigParam( 'sShopDir' ) . '/setup/index.php' ) ) {
-            $aMessage['warning']  .= ( ( !empty($aMessage['warning']) ) ? "<br>" : '' ) . oxLang::getInstance()->translateString('SETUP_DIRNOTDELETED_WARNING');
         }
 
         return $aMessage;

@@ -19,7 +19,7 @@
  * @package views
  * @copyright (C) OXID eSales AG 2003-2009
  * @version OXID eShop CE
- * $Id: oxviewconfig.php 19755 2009-06-10 14:16:24Z arvydas $
+ * $Id: oxviewconfig.php 18043 2009-04-09 12:25:00Z arvydas $
  */
 
 /**
@@ -57,24 +57,8 @@ class oxViewConfig extends oxSuperCfg
      */
     public function getHomeLink()
     {
-        if ( ( $sValue = $this->getViewConfigParam( 'homeLink' ) ) === null ) {
-            $myConfig = $this->getConfig();
-            $myUtils = oxUtils::getInstance();
 
-            $sValue = null;
-
-
-            if ( $myUtils->seoIsActive() && !$sValue && $iLang = oxLang::getInstance()->getBaseLanguage() ) {
-                $sValue = oxSeoEncoder::getInstance()->getStaticUrl( $this->getSelfLink() . 'cl=start', $iLang );
-            }
-
-            if ( !$sValue ) {
-                $sValue = $this->getSession()->processUrl( $this->getBaseDir() );
-            }
-
-            $this->setViewConfigParam( 'homeLink', $sValue );
-        }
-        return $sValue;
+            return $this->getBaseDir();
     }
 
     /**
@@ -99,8 +83,7 @@ class oxViewConfig extends oxSuperCfg
         $sCatnid  = $this->getActCatId();
         $sTplName = $this->getActTplName();
 
-        $sLink = $this->getConfig()->getShopHomeURL()."cl={$sClass}&amp;".( $sCatnid ? "cnid={$sCatnid} " : '' )."&amp;fnc=logout".( $sTplName ? "&amp;tpl=".basename( $sTplName ) : '' )."&amp;redirect=1";
-        return $this->getSession()->processUrl( $sLink );
+        return $this->getConfig()->getShopHomeURL()."cl={$sClass}&amp;".( $sCatnid ? "cnid={$sCatnid} " : '' )."&amp;fnc=logout".( $sTplName ? "&amp;tpl=".basename( $sTplName ) : '' )."&amp;redirect=1";
     }
 
     /**
@@ -112,8 +95,7 @@ class oxViewConfig extends oxSuperCfg
     {
         $sTplName = $this->getActTplName();
         $sClass   = $this->getActiveClassName();
-        $sLink = $this->getConfig()->getShopCurrentURL()."cl=help&amp;page={$sClass}".( $sTplName ? "&amp;tpl={$sTplName}" : '' );
-        return $this->getSession()->processUrl( $sLink );
+        return $this->getConfig()->getShopCurrentURL()."cl=help&amp;page={$sClass}".( $sTplName ? "&amp;tpl={$sTplName}" : '' );
     }
 
     /**

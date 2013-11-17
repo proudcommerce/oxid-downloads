@@ -19,7 +19,7 @@
  * @package core
  * @copyright (C) OXID eSales AG 2003-2009
  * @version OXID eShop CE
- * $Id: oxdeliverylist.php 19745 2009-06-10 10:43:24Z vilma $
+ * $Id: oxdeliverylist.php 16303 2009-02-05 10:23:41Z rimvydas.paskevicius $
  */
 
 /**
@@ -186,7 +186,7 @@ class oxDeliveryList extends oxList
     protected function _getFilterSelect( $oUser, $sCountryId, $sDelSet )
     {
         $sTable = getViewName( 'oxdelivery' );
-        $sQ  = "select $sTable.* from ( select $sTable.* from $sTable left join oxdel2delset on oxdel2delset.oxdelid=$sTable.oxid ";
+        $sQ  = "select $sTable.* from $sTable left join oxdel2delset on oxdel2delset.oxdelid=$sTable.oxid ";
         $sQ .= "where ".$this->getBaseObject()->getSqlActiveSnippet()." and oxdel2delset.oxdelsetid = '$sDelSet' ";
 
         // do we need to check in filter starting param ?
@@ -220,7 +220,7 @@ class oxDeliveryList extends oxList
         $sUserSql    = $sUserId    ? "EXISTS(select oxobject2delivery.oxid from oxobject2delivery where oxobject2delivery.oxdeliveryid=$sTable.OXID and oxobject2delivery.oxtype='oxuser' and oxobject2delivery.OXOBJECTID='$sUserId')"   : '0';
         $sGroupSql   = $sIds       ? "EXISTS(select oxobject2delivery.oxid from oxobject2delivery where oxobject2delivery.oxdeliveryid=$sTable.OXID and oxobject2delivery.oxtype='oxgroups' and oxobject2delivery.OXOBJECTID in ($sIds) )"  : '0';
 
-        $sQ .= ") as $sTable where (
+        $sQ .= "and (
             select
                 if(EXISTS(select 1 from oxobject2delivery where oxobject2delivery.oxdeliveryid=$sTable.OXID and oxobject2delivery.oxtype='oxcountry' LIMIT 1),
                     $sCountrySql,

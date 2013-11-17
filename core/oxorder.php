@@ -19,7 +19,7 @@
  * @package core
  * @copyright (C) OXID eSales AG 2003-2009
  * @version OXID eShop CE
- * $Id: oxorder.php 19886 2009-06-16 12:39:06Z alfonsas $
+ * $Id: oxorder.php 18978 2009-05-12 15:45:00Z arvydas $
  */
 
 /**
@@ -1261,7 +1261,7 @@ class oxOrder extends oxBase
      */
     public function getNextBillNum()
     {
-        $sQ = 'select max(cast(oxorder.oxbillnr as unsigned)) from oxorder where oxorder.oxshopid = "'.$this->getConfig()->getShopId().'" ';
+        $sQ = 'select max(oxorder.oxbillnr) from oxorder where oxorder.oxshopid = "'.$this->getConfig()->getShopId().'" ';
         return ( ( int ) oxDb::getDb()->getOne( $sQ ) + 1 );
     }
 
@@ -1464,12 +1464,9 @@ class oxOrder extends oxBase
      */
     public function getPaymentType()
     {
-        if ( $this->oxorder__oxpaymentid->value && $this->_oPaymentType === null ) {
-            $this->_oPaymentType = false;
-            $oPaymentType = oxNew( 'oxuserpayment' );
-            if ( $oPaymentType->load( $this->oxorder__oxpaymentid->value ) ) {
-                $this->_oPaymentType = $oPaymentType;
-            }
+        if ( $this->oxorder__oxpaymentid->value && $this->_oPaymentType == null ) {
+            $this->_oPaymentType = oxNew( 'oxuserpayment' );
+            $this->_oPaymentType->load( $this->oxorder__oxpaymentid->value );
         }
 
         return $this->_oPaymentType;

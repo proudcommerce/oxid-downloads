@@ -19,7 +19,7 @@
  * @package views
  * @copyright (C) OXID eSales AG 2003-2009
  * @version OXID eShop CE
- * $Id: contact.php 19888 2009-06-16 12:43:36Z rimvydas.paskevicius $
+ * $Id: contact.php 18040 2009-04-09 12:22:44Z arvydas $
  */
 
 /**
@@ -114,23 +114,15 @@ class Contact extends oxUBase
         $sMac     = oxConfig::getParameter( 'c_mac' );
         $sMacHash = oxConfig::getParameter( 'c_mach' );
         $oCaptcha = oxNew('oxCaptcha');
-
-        $aParams  = oxConfig::getParameter( 'editval' );
-        $sSubject = oxConfig::getParameter( 'c_subject' );
-        $sBody    = oxConfig::getParameter( 'c_message' );
-
-        // checking email address
-        if ( !oxUtils::getInstance()->isValidEmail( $aParams['oxuser__oxusername'] ) ) {
-            oxUtilsView::getInstance()->addErrorToDisplay( 'EXCEPTION_INPUT_NOVALIDEMAIL' );
-            return false;
-        }
-
         if ( !$oCaptcha->pass($sMac, $sMacHash ) ) {
             // even if there is no exception, use this as a default display method
             oxUtilsView::getInstance()->addErrorToDisplay( 'EXCEPTION_INPUT_NOTALLFIELDS' );
             return false;
         }
 
+        $aParams  = oxConfig::getParameter( 'editval' );
+        $sSubject = oxConfig::getParameter( 'c_subject' );
+        $sBody    = oxConfig::getParameter( 'c_message' );
         if ( !$aParams['oxuser__oxfname'] || !$aParams['oxuser__oxlname'] || !$aParams['oxuser__oxusername'] || !$sSubject ) {
             // even if there is no exception, use this as a default display method
             oxUtilsView::getInstance()->addErrorToDisplay( 'EXCEPTION_INPUT_NOTALLFIELDS' );

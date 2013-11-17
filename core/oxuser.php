@@ -19,7 +19,7 @@
  * @package core
  * @copyright (C) OXID eSales AG 2003-2009
  * @version OXID eShop CE
- * $Id: oxuser.php 19837 2009-06-15 07:32:08Z vilma $
+ * $Id: oxuser.php 18956 2009-05-12 08:55:26Z vilma $
  */
 
 /**
@@ -419,7 +419,12 @@ class oxUser extends oxBase
             $this->oxuser__oxbirthdate = new oxField($this->convertBirthday( $this->oxuser__oxbirthdate->value ), oxField::T_RAW);
         }
 
+        // dodger  Task #1535 - editing user information in shop
+        // isDerived seems to be wrong here
+        $blStore = $this->_blIsDerived;
+        $this->_blIsDerived = false;
         $blRet = parent::save();
+        $this->_blIsDerived = $blStore;
 
         //add registered remark
         if ( $blAddRemark && $blRet ) {
@@ -430,16 +435,6 @@ class oxUser extends oxBase
         }
 
         return $blRet;
-    }
-
-    /**
-     * Overrides parent isDerived check and returns true
-     *
-     * @return bool
-     */
-    public function allowDerivedUpdate()
-    {
-        return true;
     }
 
     /**
@@ -1296,7 +1291,7 @@ class oxUser extends oxBase
                 $sUser = $oDB->quote( $aData[0] );
                 $sPWD  = @$aData[1];
 
-                $sSelect =  'select oxid, oxpassword from oxuser where oxuser.oxpassword != "" and  oxuser.oxactive = 1 and oxuser.oxusername = '.$sUser;
+                $sSelect =  'select oxid, oxpassword from oxuser where oxuser.oxactive = 1 and oxuser.oxusername = '.$sUser;
 
 
                 $oDB = oxDb::getDb();
@@ -1540,14 +1535,14 @@ class oxUser extends oxBase
     {
         $myConfig = $this->getConfig();
 
-        $sLogin   = ( isset( $aInvAddress['oxuser__oxusername'] ) )?$aInvAddress['oxuser__oxusername']:$sLogin;
+        $sLogin   = ( isset( $aInvAddress['oxuser__oxusername'] ) && $aInvAddress['oxuser__oxusername'] )?$aInvAddress['oxuser__oxusername']:$sLogin;
 
         // check only for users with password during registration
         // if user wants to change user name - we must check if passwords are ok before changing
         if ( $this->oxuser__oxpassword->value && $sLogin != $this->oxuser__oxusername->value ) {
 
             // on this case password must be taken directly from request
-            $sNewPass = (isset( $aInvAddress['oxuser__oxpassword']) && $aInvAddress['oxuser__oxpassword'] )?$aInvAddress['oxuser__oxpassword']:oxConfig::getParameter( 'user_password' );
+            $sNewPass = isset( $aInvAddress['oxuser__oxpassword'] )?$aInvAddress['oxuser__oxpassword']:oxConfig::getParameter( 'user_password' );
             if ( !$sNewPass ) {
 
                 // 1. user forgot to enter password

@@ -19,7 +19,7 @@
  * @package admin
  * @copyright (C) OXID eSales AG 2003-2009
  * @version OXID eShop CE
- * $Id: vendor_seo.php 19353 2009-05-25 13:26:27Z arvydas $
+ * $Id: vendor_seo.php 17479 2009-03-20 12:32:53Z arvydas $
  */
 
 /**
@@ -112,6 +112,8 @@ class Vendor_Seo extends Object_Seo
                 $oVendor->oxvendor__oxshowsuffix = new oxField( (int) oxConfig::getParameter( 'blShowSuffix' ) );
                 $oVendor->save();
 
+                // marking page links as expired
+                oxSeoEncoderVendor::getInstance()->markAsExpired( $sOxid, $this->getConfig()->getShopId(), 1, $this->_iEditLang, "oxparams != '' " );
             }
         }
 

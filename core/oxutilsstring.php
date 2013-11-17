@@ -19,7 +19,7 @@
  * @package core
  * @copyright (C) OXID eSales AG 2003-2009
  * @version OXID eShop CE
- * $Id: oxutilsstring.php 19886 2009-06-16 12:39:06Z alfonsas $
+ * $Id: oxutilsstring.php 17826 2009-04-03 14:15:59Z vilma $
  */
 
 /**
@@ -79,9 +79,8 @@ class oxUtilsString
     }
 
      /**
-     * shortens a string to a size $iLenght, multiple spaces are removed
-     * and leading and ending whitespaces are removed. If string ends with "," then
-     * "," is removed from string end
+     * shortens a string to a size $iLenght, whereby "," and multiple spaces are removed
+     * "," is rerplaced with " " and leading and ending whitespaces are removed
      *
      * @param string $sString input string
      * @param int    $iLength maximum length of result string , -1 -> no truncation
@@ -90,17 +89,15 @@ class oxUtilsString
      */
     public function minimizeTruncateString( $sString, $iLength )
     {
+        $sString = str_replace( ",", " ", $sString );
         //leading and ending whitespaces
         $sString = trim( $sString );
-
         //multiple whitespaces
         $sString = ereg_replace( "[ \t\n\r]+", " ", $sString );
         $oStr = getStr();
         if ( $oStr->strlen( $sString ) > $iLength && $iLength != -1 ) {
             $sString = $oStr->substr( $sString, 0, $iLength );
         }
-
-        $sString = preg_replace( "/,+$/", "", $sString );
         return $sString;
     }
 

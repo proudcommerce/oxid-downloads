@@ -15,11 +15,10 @@
  *    You should have received a copy of the GNU General Public License
  *    along with OXID eShop Community Edition.  If not, see <http://www.gnu.org/licenses/>.
  *
- * @link http://www.oxid-esales.com
- * @package core
+ * @link http://www.oxid-esales.com * @package core
  * @copyright (C) OXID eSales AG 2003-2009
  * @version OXID eShop CE
- * $Id: oxmediaurl.php 19178 2009-05-18 13:37:46Z arvydas $
+ * $Id: oxmediaurl.php 16303 2009-02-05 10:23:41Z rimvydas.paskevicius $
  */
 
 /**
@@ -75,7 +74,7 @@ class oxMediaUrl extends oxI18n
         $sDesc = $this->oxmediaurls__oxdesc->value;
 
         $sForceBlank = $blNewPage?'target=_blank':'';
-
+        
         $sHtmlLink = "<a href='$sUrl' $sForceBlank >$sDesc</a>";
         return $sHtmlLink;
     }

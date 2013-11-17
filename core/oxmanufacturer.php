@@ -147,36 +147,6 @@ class oxManufacturer extends oxI18n
         $this->oxmanufacturers__oxnrofarticles = new oxField($this->_iNrOfArticles, oxField::T_RAW);
     }
 
-    /**
-     * Loads object data from DB (object data ID is passed to method). Returns
-     * true on success.
-     *
-     * @param string $sOxid object id
-     *
-     * @return oxmanufacturer
-     */
-    public function load( $sOxid )
-    {
-        if ( $sOxid == 'root' ) {
-            return $this->_setRootObjectData();
-        }
-        return parent::load( $sOxid );
-    }
-
-    /**
-     * Sets root manufacturer data. Returns true
-     *
-     * @return bool
-     */
-    protected function _setRootObjectData()
-    {
-        $this->setId( 'root' );
-        $this->oxmanufacturers__oxicon = new oxField( '', oxField::T_RAW );
-        $this->oxmanufacturers__oxtitle = new oxField( oxLang::getInstance()->translateString( 'byManufacturer', $this->getLanguage(), false ), oxField::T_RAW );
-        $this->oxmanufacturers__oxshortdesc = new oxField( '', oxField::T_RAW );
-
-        return true;
-    }
 
     /**
      * getRootManufacturer creates root manufacturer object
@@ -184,20 +154,22 @@ class oxManufacturer extends oxI18n
      * @param integer $iLang language
      *
      * @static
-     * @deprecated use oxmanufacturer::load( 'root' ) instead
      * @access public
      * @return void
      */
     public static function getRootManufacturer( $iLang = null)
     {
-        $iLang = isset( $iLang ) ? $iLang : oxLang::getInstance()->getBaseLanguage();
-        if ( !isset( self::$_aRootManufacturer[$iLang] ) ) {
-            self::$_aRootManufacturer[$iLang] = false;
-
-            $oObject = oxNew( 'oxmanufacturer' );
-            if ( $oObject->loadInLang( $iLang, 'root' ) ) {
-                self::$_aRootManufacturer[$iLang] = $oObject;
-            }
+        if (!isset($iLang)) {
+            $iLang = oxLang::getInstance()->getBaseLanguage();
+        }
+        if (!self::$_aRootManufacturer[$iLang]) {
+            $oRootManufacturer = oxNew( 'oxmanufacturer' );
+            $oRootManufacturer->setId( 'root' );
+            $oRootManufacturer->setLanguage( $iLang );
+            $oRootManufacturer->oxmanufacturers__oxicon      = new oxField('');
+            $oRootManufacturer->oxmanufacturers__oxtitle     = new oxField(oxLang::getInstance()->translateString( 'byManufacturer', $iLang, false ) );
+            $oRootManufacturer->oxmanufacturers__oxshortdesc = new oxField('');
+            self::$_aRootManufacturer[$iLang] = $oRootManufacturer;
         }
         return self::$_aRootManufacturer[$iLang];
     }

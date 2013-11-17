@@ -19,7 +19,7 @@
  * @package views
  * @copyright (C) OXID eSales AG 2003-2009
  * @version OXID eShop CE
- * $Id: alist.php 19632 2009-06-05 13:14:07Z arvydas $
+ * $Id: alist.php 18520 2009-04-24 08:10:19Z vilma $
  */
 
 /**
@@ -221,59 +221,7 @@ class aList extends oxUBase
 
         parent::render();
 
-        // processing list articles
-        $this->_processListArticles();
-
         return $this->getTemplateName();
-    }
-
-    /**
-     * Iterates through list articles and performs list view specific tasks:
-     *  - sets type of link whicn needs to be generated (Manufacturer link)
-     *
-     * @return null
-     */
-    protected function _processListArticles()
-    {
-        if ( $aArtList = $this->getArticleList() ) {
-            $iLinkType = $this->_getProductLinkType();
-            foreach ( $aArtList as $oArticle ) {
-                $oArticle->setLinkType( $iLinkType );
-            }
-        }
-    }
-
-    /**
-     * Special page indexing handling for price categories (page should not be indexed):
-     *  - if current category is price category returns VIEW_INDEXSTATE_NOINDEXFOLLOW
-     *  - else returns parent::noIndex()
-     *
-     * @return int
-     */
-    public function noIndex()
-    {
-        // no indexing for price categories
-        if ( $this->_getProductLinkType() == OXARTICLE_LINKTYPE_PRICECATEGORY ) {
-            return $this->_iViewIndexState = VIEW_INDEXSTATE_NOINDEXFOLLOW;
-        }
-
-        return parent::noIndex();
-    }
-
-    /**
-     * Returns product link type:
-     *  - OXARTICLE_LINKTYPE_PRICECATEGORY - when active category is price category
-     *  - OXARTICLE_LINKTYPE_CATEGORY - when active category is regular category
-     *
-     * @return int
-     */
-    protected function _getProductLinkType()
-    {
-        $iCatType = OXARTICLE_LINKTYPE_CATEGORY;
-        if ( ( $oCat = $this->getActCategory() ) && $oCat->isPriceCategory() ) {
-            $iCatType =  OXARTICLE_LINKTYPE_PRICECATEGORY;
-        }
-        return $iCatType;
     }
 
     /**
@@ -313,7 +261,7 @@ class aList extends oxUBase
         $oArtList->setSqlLimit( $iNrofCatArticles * $this->getActPage(), $iNrofCatArticles );
         $oArtList->setCustomSorting( $this->getSortingSql( $oCategory->getId() ) );
 
-        if ( $oCategory->isPriceCategory() ) {
+        if ( $oCategory->oxcategories__oxpricefrom->value || $oCategory->oxcategories__oxpriceto->value ) {
             $dPriceFrom = $oCategory->oxcategories__oxpricefrom->value;
             $dPriceTo   = $oCategory->oxcategories__oxpriceto->value;
 
@@ -447,26 +395,18 @@ class aList extends oxUBase
      * Returns current view keywords seperated by comma
      *
      * @param string $sKeywords data to use as keywords
-     * @param bool   $blRemoveDuplicatedWords remove dublicated words
      *
      * @return string
      */
-    protected function _prepareMetaKeyword( $sKeywords, $blRemoveDuplicatedWords = false )
+    protected function _prepareMetaKeyword( $sKeywords )
     {
         $sKeywords = '';
         if ( ( $oCategory = $this->getActCategory() ) ) {
-            $aKeywords = array();
-
-            if ( $oCatTree = $this->getCategoryTree() ) {
-                foreach ( $oCatTree->getPath() as $oCat ) {
-                    $aKeywords[] = trim( $oCat->oxcategories__oxtitle->value );
-                }
+            if ( ( $oParent = $oCategory->getParentCategory() ) ) {
+                $sKeywords = $oParent->oxcategories__oxtitle->value;
             }
 
-            if ( count( $aKeywords ) > 0 ) {
-                $sKeywords = implode( ", ", $aKeywords );
-            }
-
+            $sKeywords = ( $sKeywords ? $sKeywords . ', ' : '' ) . $oCategory->oxcategories__oxtitle->value;
             $aSubCats  = $oCategory->getSubCats();
             if ( is_array( $aSubCats ) ) {
                 foreach ( $aSubCats as $oSubCat ) {
@@ -475,7 +415,9 @@ class aList extends oxUBase
             }
         }
 
-        $sKeywords = parent::_prepareMetaDescription( $sKeywords, -1, $blRemoveDuplicatedWords );
+        $sKeywords = parent::_prepareMetaDescription( $sKeywords, -1, false );
+        $aSkipTags = $this->getConfig()->getConfigParam( 'aSkipTags' );
+        $sKeywords = $this->_removeDuplicatedWords( $sKeywords, $aSkipTags );
 
         return trim( $sKeywords );
     }
@@ -497,10 +439,6 @@ class aList extends oxUBase
             $oStr = getStr();
             foreach ( $aArticleList as $oProduct ) {
                 $sDesc = strip_tags( trim( $oStr->strtolower( $oProduct->getArticleLongDesc()->value ) ) );
-
-                //removing dots from string (they are not cleaned up during general string cleanup)
-                $sDesc = preg_replace( "/\./", " ", $sDesc );
-
                 if ( $oStr->strlen( $sDesc ) > $iMaxTextLenght ) {
                     $sMidText = $oStr->substr( $sDesc, 0, $iMaxTextLenght );
                     $sDesc   .= $oStr->substr( $sMidText, 0, ( $oStr->strlen( $sMidText ) - $oStr->strpos( strrev( $sMidText ), ' ' ) ) );
@@ -655,11 +593,9 @@ class aList extends oxUBase
      * returns object, assosiated with current view.
      * (the object that is shown in frontend)
      *
-     * @param int $iLang language id
-     *
      * @return object
      */
-    protected function _getSubject( $iLang )
+    protected function _getSubject()
     {
         return $this->getActCategory();
     }

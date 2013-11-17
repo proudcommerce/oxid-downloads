@@ -19,7 +19,7 @@
  * @package lang
  * @copyright (C) OXID eSales AG 2003-2009
  * @version OXID eShop CE
- * $Id: lang.php 19866 2009-06-16 10:33:17Z alfonsas $
+ * $Id: lang.php 18910 2009-05-08 14:24:06Z vilma $
  */
 
 $sLangName  = 'Deutsch';
@@ -262,9 +262,8 @@ $aLang = array(
 
 'GENERAL_SEO_ACTCAT'                            => 'Aktive Kategorie/Hersteller',
 'GENERAL_SEO_CAT'                               => '-- Kategorie --',
-'GENERAL_SEO_VND'                               => '-- Lieferant --',
-'GENERAL_SEO_MANUFACTURER'                      => '-- Hersteller --',
-'GENERAL_SEO_TAG'                               => '-- Stichworte --',
+'GENERAL_SEO_VND'                               => ' -- Lieferant --',
+'GENERAL_SEO_MANUFACTURER'                      => ' -- Hersteller --',
 
 'GENERAL_SEO_URL'                               => 'SEO URL',
 'GENERAL_SEO_OXKEYWORDS'                        => 'Stichworte für Meta-Tags',
@@ -818,8 +817,6 @@ $aLang = array(
 'GUI_PRICEALARM_LABELS_TEXT'                    => 'Pricealarm Bezeichnung-Text',
 'GUI_QUESTION_ABOUT_PRODUCT'                    => 'Artikel Info E-Mail',
 'GUI_SINGLE_BACKGROUND'                         => 'Einzelner Link-Hintergrund',
-'GUI_SINGLE_TEXT_COLOR'                         => 'Einzelner Link Text-Farbe',
-'GUI_SINGLE_ACTIVE_TEXT_COLOR'                  => 'Einzelner Link Aktive Text-Farbe',
 'GUI_SHOP_BACKGROUND'                           => 'Shop Link-Hintergrund',
 'GUI_SHOP_TEXT_COLOR'                           => 'Shop Link Text-Farbe',
 'GUI_TEXT'                                      => 'Text',
@@ -848,7 +845,6 @@ $aLang = array(
 'LANGUAGE_NODBMULTILANGFIELDS_WARNING'          => 'Warnung: Es wurden keine Datenbankfelder für die ausgewählte Sprache gefunden!',
 'LANGUAGE_DELETINGMAINLANG_WARNING'             => '[tr]Warning: you can\'t delete main language (with ID = 0)!',
 'LANGUAGE_ALREADYEXISTS_ERROR'                  => '[tr]Error: language with such abbervation already exists!',
-'SETUP_DIRNOTDELETED_WARNING'                   => 'Bitte löschen Sie das Setupverzeichnis: setup!',
 'LOGIN_TITLE'                                   => 'OXID eShop Login',
 'LOGIN_ERROR'                                   => 'Fehler! Falscher Benutzername und/oder Passwort.',
 'LOGIN_NO_COOKIE_SUPPORT'                       => 'Fehler! Ihr Browser unterstützt keine Cookies.',
@@ -1268,9 +1264,9 @@ $aLang = array(
 'SHOP_SEO_ROOTVENDORID'                         => 'Hersteller Wurzel SEO ID',
 'SHOP_SEO_IDSSEPARATOR'                         => 'SEO IDs Trennzeichen (z. B. "+", "-")',
 'SHOP_SEO_SAFESEOPREF'                          => 'SEO Suffix um gleiche Artikel zu unterscheiden',
-'SHOP_SEO_RESETIDS'                             => 'SEO URLs neu berechnen',
+'SHOP_SEO_RESETIDS'                             => 'SEO IDs zurücksetzen',
 'SHOP_SEO_REPLACECHARS'                         => 'Zeichen, die in SEO URLs ersetzt werden',
-'SHOP_SEO_QRESETIDS'                            => 'ACHTUNG: Die SEO URLS von Kategorien, Artikeln, Herstellern und Lieferanten werden neu berechnet, wenn die entsprechende Seite das nächste mal aufgerufen',
+'SHOP_SEO_QRESETIDS'                            => 'ACHTUNG: Es werden die SEO URLS zurückgesetzt für Kategorien, Artikel und Hersteller.!',
 'SHOP_SEO_NEWINSTALL'                           => 'ACHTUNG: Dies erfordert die korrekte Ausführung der mitgelieferten .htaccess (mod rewrite)',
 'SHOP_SEO_STATICURLS'                           => 'Statische URLs',
 'SHOP_SEO_STDURL'                               => 'Standard URL',
@@ -1410,7 +1406,7 @@ $aLang = array(
 'TOOLTIPS_RECALCNROFARTICLESINMAN'              => 'Artikelanzahl der Hersteller neu berechnen',
 'TOOLTIPS_RESETNROFARTICLESINCAT'               => 'Artikelanzahl in den Kategorien zurücksetzen',
 'TOOLTIPS_RESETNROFARTICLESINVND'               => 'Artikelanzahl in den Lieferanten zurücksetzen',
-'TOOLTIPS_RESETNROFARTICLESINMAN'               => 'Artikelanzahl in den Herstellern zurücksetzen',
+'TOOLTIPS_RESETNROFARTICLESINMAN'               => 'Artikelanzahl in den Hersteller zurücksetzen',
 'TOOLTIPS_TIMEFORMAT'                           => 'Zeit Format: ',
 'TOOLTIPS_VALDESC'                              => 'Eintrag1__@@Eintrag2__@@ usw.',
 'USER_ADDRESS_DELIVERYADDRESS'                  => 'Lieferadressen',
@@ -1485,10 +1481,10 @@ $aLang = array(
 'WRAPPING_MAIN_TITLE'                           => '[OXID Geschenkverwaltung]',
 'MANUFACTURER_MAIN_ICONUPLOAD'                  => 'Icon hochladen',
 'MANUFACTURER_MAIN_ITEMSWITHMANUFACTURER'       => 'Artikel dieses Herstellers',
-'MANUFACTURER_MAIN_ALLITEMS'                    => 'Alle Artikel',
+'MANUFACTURER_MAIN_ALLITEMS' 					=> 'Alle Artikel',
 'MANUFACTURER_LIST_TITLE'                       => 'Herstellerliste',
-'MANUFACTURER_LIST_MENUITEM'                    => 'Stammdaten',
-'MANUFACTURER_LIST_MENUSUBITEM'                 => 'Hersteller',
+'MANUFACTURER_LIST_MENUITEM'					=> 'Stammdaten',
+'MANUFACTURER_LIST_MENUSUBITEM'					=> 'Hersteller',
 'SHOP_PERF_CALCVATONLYFORBASKETORDER'           => 'Länderspezifische Mehrwertsteuer nur im Warenkorb und im Bestellprozess berechnen',
 'SHOP_PERF_CHECKIFTPLCOMPILE'                   => 'Überprüfen ob Templates neu kompiliert werden müssen. Schalten Sie diese Einstellung aus, wenn der eShop in den Live-Betrieb geht.',
 'SHOP_PERF_COMPARE'                             => 'Artikelvergleiche einschalten',
@@ -1744,19 +1740,19 @@ $aLang = array(
 'serial_added'                                  => 'Neuer Lizenzschlüssel wurde aktiviert',
 'serial_updated'                                => 'Lizenzschlüssel wurde aktualisiert',
 
-'SHOP_OPTIONS_GROUP_GLOBAL'                     => 'Global',
-'SHOP_OPTIONS_GROUP_SEARCH'                     => 'Suche',
-'SHOP_OPTIONS_GROUP_STOCK'                      => 'Lager',
-'SHOP_OPTIONS_GROUP_ARTICLES'                   => 'Artikel',
-'SHOP_OPTIONS_GROUP_ORDER'                      => 'Bestellungen',
-'SHOP_OPTIONS_GROUP_VAT'                        => 'Mehrwertsteuer',
-'SHOP_OPTIONS_GROUP_LANGUAGE'                   => 'Sprache',
-'SHOP_OPTIONS_GROUP_PICTURES'                   => 'Bilder',
-'SHOP_OPTIONS_GROUP_SHOP_FRONTEND'              => 'Shop Frontend',
-'SHOP_OPTIONS_GROUP_ADMINISTRATION'             => 'Administrationsbereich',
-'SHOP_OPTIONS_GROUP_OTHER_SETTINGS'             => 'Weitere Einstellungen',
-'SHOP_OPTIONS_GROUP_VARIANTS'                   => 'Varianten',
-'SHOP_OPTIONS_GROUP_MODULES'                    => 'Module',
+'SHOP_OPTIONS_GROUP_GLOBAL'						=> 'Global',
+'SHOP_OPTIONS_GROUP_SEARCH'						=> 'Suche',
+'SHOP_OPTIONS_GROUP_STOCK'						=> 'Lager',
+'SHOP_OPTIONS_GROUP_ARTICLES'					=> 'Artikel',
+'SHOP_OPTIONS_GROUP_ORDER'						=> 'Bestellungen',
+'SHOP_OPTIONS_GROUP_VAT'						=> 'Mehrwertsteuer',
+'SHOP_OPTIONS_GROUP_LANGUAGE'					=> 'Sprache',
+'SHOP_OPTIONS_GROUP_PICTURES'					=> 'Bilder',
+'SHOP_OPTIONS_GROUP_SHOP_FRONTEND'				=> 'Shop Frontend',
+'SHOP_OPTIONS_GROUP_ADMINISTRATION'				=> 'Administrationsbereich',
+'SHOP_OPTIONS_GROUP_OTHER_SETTINGS'				=> 'Weitere Einstellungen',
+'SHOP_OPTIONS_GROUP_VARIANTS'					=> 'Varianten',
+'SHOP_OPTIONS_GROUP_MODULES'					=> 'Module',
 
 );
 

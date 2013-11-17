@@ -19,7 +19,7 @@
  * @package core
  * @copyright (C) OXID eSales AG 2003-2009
  * @version OXID eShop CE
- * $Id: oxutilsfile.php 19629 2009-06-05 11:27:37Z arvydas $
+ * $Id: oxutilsfile.php 18599 2009-04-28 11:07:50Z arvydas $
  */
 
 /**
@@ -436,7 +436,7 @@ class oxUtilsFile extends oxSuperCfg
                     }
 
                     // assign the name
-                    if ( $oObject && isset( $sValue ) && $sValue ) {
+                    if ( isset( $sValue ) && $sValue ) {
                         $oObject->{$sKey}->setValue( $sValue );
                     }
                 }

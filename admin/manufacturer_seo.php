@@ -85,6 +85,9 @@ class Manufacturer_Seo extends Object_Seo
             if ( $oManufacturer->load( $sOxid ) ) {
                 $oManufacturer->oxmanufacturers__oxshowsuffix = new oxField( (int) oxConfig::getParameter( 'blShowSuffix' ) );
                 $oManufacturer->save();
+
+                // marking page links as expired
+                oxSeoEncoderManufacturer::getInstance()->markAsExpired( $sOxid, $this->getConfig()->getShopId(), 1, $this->_iEditLang, "oxparams != '' " );
             }
         }
 
