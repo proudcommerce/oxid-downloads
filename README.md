@@ -1,6 +1,4 @@
-OXID Downloads
+OXID_ESHOP_CE_4.6.0
 ==============
 
-OXID_ESHOP_CE_4.6.0
-
-	https://github.com/proudcommerce/oxid-downloads/archive/CE-4.6.0.zip
+http://wiki.oxidforge.org/Downloads/4.6.0
