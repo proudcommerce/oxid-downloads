@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="ISO-8859-15"?>
+<gui xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="gui.xsd">
+
+    <!-- Background -->
+    <gif tpl="bd.tpl.gif" file="bg/bd.gif" const="oxFauxColBg">
+        <color const="0" color="oxLeftBg" />
+        <color const="1" color="oxLeftBr" />
+        <color const="2" color="oxBodyBg" />
+        <color const="3" color="oxRightBr" />
+        <color const="4" color="oxRightBg" />
+    </gif>
+
+    <!-- Sprites -->
+    <gif tpl="oxid.tpl.gif" file="bg/oxid.gif" const="oxSprite">
+        <color const="0" color="oxHeaderBoxHdIco" />
+        <color const="1" color="oxHeaderBoxHdOpenIco" />
+        <color const="2" color="oxHeaderBoxDdIco" />
+        <color const="3" color="oxHeaderBoxDdHlIco" />
+        <color const="4" color="oxHeaderBoxBdIco" />
+        <color const="5" color="oxHeaderBarCatsIco" />
+        <color const="6" color="oxHeaderBarCatsOpenIco" />
+
+        <color const="7" color="oxLeftTreeIco" />
+        <color const="8" color="oxLeftTreeOpenIco" />
+        <color const="9" color="oxLeftTreeActIco" />
+
+        <color const="10" color="oxLeftInfoIco" />
+        <color const="11" color="oxProductActionsIco" />
+
+        <color const="12" color="oxBodyPrevNextIco" />
+        <color const="13" color="oxBodyPrevNextDownIco" />
+
+        <color const="14" color="oxBodyRightIco" />
+        <color const="15" color="oxRightRightIco" />
+
+        <color const="16" color="oxLocatorSortIco" />
+        <color const="17" color="oxLocatorSortActiveIco" />
+
+        <color const="18" color="oxMoreIco" />
+
+        <color const="19" color="oxBodyCatsLinkIco" />
+    </gif>
+
+    <!-- Buttons -->
+    <gif tpl="buttons.tpl.gif" file="bg/buttons.gif" const="oxButtons">
+        <color const="0" color="oxButtonBr" />
+        <color const="1" color="oxButtonBg" />
+        <color const="2" color="oxButtonIco" />
+    </gif>
+
+    <!-- Separators -->
+    <gif tpl="separator.tpl.gif" file="bg/sepatator.gif" const="oxSeparator">
+        <color const="0" color="oxDetailsLineCl" />
+    </gif>
+
+    <!-- The style -->
+    <css tpl="oxid.tpl.css" file="oxid.css">
+
+        <group title="GUI_GROUP_HEADER">
+            <color const="oxHeaderBg" color="0" title="GUI_BACKGROUND_COLOR" />
+            <color const="oxHeaderBr" color="0" title="GUI_BORDER_COLOR" />
+            <group title="GUI_GROUP_HEADER_BOXES">
+                <group title="GUI_GROUP_HEADER_BOXES_GENERAL">
+                    <color const="oxHeaderBoxHdBg" color="1" title="GUI_HEAD_BACKGROUND_COLOR" />
+                    <color const="oxHeaderBoxHdCl" color="2" title="GUI_HEAD_TEXT_COLOR" />
+                    <color const="oxHeaderBoxHdIco" color="2" title="GUI_HEAD_ICON" />
+                    <color const="oxHeaderBoxBdBg" color="0" title="GUI_BACKGROUND_COLOR" />
+                    <color const="oxHeaderBoxBdBr" color="1" title="GUI_BORDER_COLOR" />
+                    <color const="oxHeaderBoxBdCl" color="2" title="GUI_TEXT_COLOR" />
+                    <color const="oxHeaderBoxBdIco" color="2" title="GUI_ICON" />
+                    <group title="GUI_GROUP_HEADER_BOXES_DROPDOWN">
+                        <color const="oxHeaderBoxHdOpenBg" color="4" title="GUI_HEAD_BACKGROUND" />
+                        <color const="oxHeaderBoxHdOpenCl" color="0" title="GUI_HEAD_TEXT_COLOR" />
+                        <color const="oxHeaderBoxHdOpenIco" color="0" title="GUI_HEAD_ICON" />
+
+                        <color const="oxHeaderBoxDdBg" color="1" title="GUI_DROPDOWN_BACKGROUND" />
+                        <color const="oxHeaderBoxDdCl" color="2" title="GUI_DROPDOWN_TEXT_COLOR" />
+                        <color const="oxHeaderBoxDdIco" color="2" title="GUI_DROPDOWN_ICON" />
+
+                        <color const="oxHeaderBoxDdHlBg" color="4" title="GUI_DROPDOWN_HL_BACKGROUND" />
+                        <color const="oxHeaderBoxDdHlCl" color="0" title="GUI_DROPDOWN_HL_TEXT_COLOR" />
+                        <color const="oxHeaderBoxDdHlIco" color="0" title="GUI_DROPDOWN_HL_ICON" />
+                    </group>
+                </group>
+                <group title="GUI_GROUP_HEADER_BOXES_BASKET">
+                    <color const="oxHeaderBoxBasketHdBg" color="1" title="GUI_HEAD_BACKGROUND" />
+                    <color const="oxHeaderBoxBasketHdCl" color="2" title="GUI_HEAD_TEXT_COLOR" />
+                    <color const="oxHeaderBoxBasketBdBg" color="0" title="GUI_BODY_BACKGROUND" />
+                    <color const="oxHeaderBoxBasketBdBr" color="1" title="GUI_BORDER_COLOR" />
+                    <color const="oxHeaderBoxBasketBdCl" color="2" title="GUI_BODY_TEXT_COLOR" />
+                    <group title="GUI_GROUP_HEADER_BOXES_DROPDOWN">
+                        <color const="oxHeaderBoxBasketOpenBg" color="4" title="GUI_HEAD_BACKGROUND" />
+                        <color const="oxHeaderBoxBasketOpenCl" color="0" title="GUI_HEAD_TEXT_COLOR" />
+
+                        <color const="oxHeaderBoxBasketDdBg" color="1" title="GUI_DROPDOWN_BACKGROUND" />
+                        <color const="oxHeaderBoxBasketDdCl" color="2" title="GUI_DROPDOWN_TEXT_COLOR" />
+
+                        <color const="oxHeaderBoxBasketDdHlBg" color="4" title="GUI_DROPDOWN_HL_BACKGROUND" />
+                        <color const="oxHeaderBoxBasketDdHlCl" color="0" title="GUI_DROPDOWN_HL_TEXT_COLOR" />
+                    </group>
+                </group>
+
+            </group>
+
+            <group title="GUI_GROUP_HEADER_LINKS">
+                <color const="oxHeaderBarLinksBg" color="1" title="GUI_BACKGROUND" />
+                <color const="oxHeaderBarLinksCl" color="2" title="GUI_TEXT_COLOR" />
+                <color const="oxHeaderBarLinksHlCl" color="4" title="GUI_HIGHLITED_COLOR" />
+
+                <color const="oxHeaderBarLinksSingleBg" color="4" title="GUI_SINGLE_BACKGROUND" />
+                <color const="oxHeaderBarLinksSingleCl" color="0" title="GUI_SINGLE_TEXT_COLOR" />
+                <color const="oxHeaderBarLinksSingleHlCl" color="1" title="GUI_SINGLE_ACTIVE_TEXT_COLOR" />
+            </group>
+
+            <group title="GUI_GROUP_HEADER_CATEGORIES">
+                <color const="oxHeaderBarCatsBg" color="4" title="GUI_BACKGROUND" />
+                <color const="oxHeaderBarCatsCl" color="0" title="GUI_TEXT_COLOR" />
+                <color const="oxHeaderBarFixedBg" color="4" title="GUI_FIXED_BACKGROUND" />
+                <color const="oxHeaderBarFixedCl" color="0" title="GUI_FIXED_TEXT_COLOR" />
+                <color const="oxHeaderBarFixedHlBg" color="1" title="GUI_FIXED_HL_BACKGROUND" />
+                <color const="oxHeaderBarFixedHlCl" color="2" title="GUI_FIXED_HL_TEXT_COLOR" />
+                <color const="oxHeaderBarCatsIco" color="0" title="GUI_ICON" />
+                <color const="oxHeaderBarCatsOpenBg" color="1" title="GUI_DROPDOWN_BACKGROUND" />
+                <color const="oxHeaderBarCatsOpenCl" color="2" title="GUI_DROPDOWN_TEXT_COLOR" />
+                <color const="oxHeaderBarCatsOpenIco" color="2" title="GUI_DROPDOWN_ICON" />
+                <color const="oxHeaderBarCatsOpenHlBg" color="4" title="GUI_DROPDOWN_HL_BACKGROUND" />
+                <color const="oxHeaderBarCatsOpenHlCl" color="0" title="GUI_DROPDOWN_HL_TEXT_COLOR" />
+            </group>
+        </group>
+        <group title="GUI_GROUP_BUTTONS">
+            <color color="2" const="oxButtonIco" title="GUI_ICON" />
+            <color color="2" const="oxButtonBr" title="GUI_BORDER" />
+            <color color="2" const="oxButtonBg" title="GUI_BACKGROUND" />
+            <color color="0" const="oxButtonCl" title="GUI_TEXT_COLOR" />
+        </group>
+        <group title="GUI_GROUP_FOOTER">
+            <color const="oxFooterBg" color="0" title="GUI_BOTTOM_BACKGROUND" />
+            <color const="oxFooterBr" color="0" title="GUI_BOTTOM_BORDER" />
+            <color const="oxFooterCl" color="2" title="GUI_BOTTOM_TEXT_COLOR" />
+            <color const="oxFooterCopyBg" color="4" title="GUI_COPY_BACKGROUND" />
+            <color const="oxFooterCopyCl" color="0" title="GUI_COPY_TEXT_COLOR" />
+            <color const="oxFooterShopBg" color="0" title="GUI_SHOP_BACKGROUND" />
+            <color const="oxFooterShopCl" color="2" title="GUI_SHOP_TEXT_COLOR" />
+        </group>
+        <group title="GUI_GROUP_LEFT">
+            <color const="oxLeftBg" color="0" title="GUI_BACKGROUND" />
+            <color const="oxLeftBr" color="1" title="GUI_BORDER" />
+            <color const="oxLeftHdBg" color="1" title="GUI_HEAD_BACKGROUND" />
+            <color const="oxLeftHdCl" color="2" title="GUI_HEAD_TEXT_COLOR" />
+            <color const="oxLeftTreeBg" color="0" title="GUI_TREE_BACKGROUND" />
+            <color const="oxLeftTreeBr" color="1" title="GUI_TREE_BORDER" />
+            <color const="oxLeftTreeCl" color="2" title="GUI_TREE_TEXT_COLOR" />
+            <color const="oxLeftTreeIco" color="4" title="GUI_TREE_ICON" />
+            <color const="oxLeftTreeRootBr" color="1" title="GUI_TREE_ROOT_BORDER" />
+            <color const="oxLeftTreeOpenIco" color="4" title="GUI_DROPDOWN_HL_ICON" />
+            <color const="oxLeftTreeActBg" color="4" title="GUI_TREE_ACTIVE_BACKGROUND" />
+            <color const="oxLeftTreeActCl" color="0" title="GUI_TREE_ACTIVE_TEXT_COLOR" />
+            <color const="oxLeftTreeActIco" color="0" title="GUI_TREE_ACTIVE_ICON" />
+
+            <group title="GUI_LEFT_INFO_LIST">
+                <color const="oxLeftInfoCl" color="2" title="GUI_TEXT" />
+                <color const="oxLeftInfoBr" color="1" title="GUI_BORDER" />
+                <color const="oxLeftInfoIco" color="4" title="GUI_ICON" />
+            </group>
+
+            <group title="GUI_NEWS">
+                <color const="oxNewsCl" color="2" title="GUI_TEXT" />
+            </group>
+
+        </group>
+        <group title="GUI_GROUP_RIGHT">
+            <color const="oxRightFormsBg" color="0" title="GUI_INPUT_BACKGROUND" />
+            <color const="oxRightFormsBr" color="1" title="GUI_INPUT_BORDER" />
+            <color const="oxRightFormsHdBg" color="1" title="GUI_INPUT_HEADER_BACKGROUND" />
+            <color const="oxRightFormsHdCl" color="2" title="GUI_INPUT_HEADER_TEXT_COLOR" />
+            <color const="oxRightBg" color="0" title="GUI_BACKGROUND" />
+            <color const="oxRightBr" color="1" title="GUI_BORDER" />
+            <color const="oxRightHdBg" color="1" title="GUI_HEAD_BACKGROUND" />
+            <color const="oxRightHdCl" color="2" title="GUI_HEAD_TEXT_COLOR" />
+            <color const="oxRightFormLabelCl" color="2" title="GUI_INPUT_LABEL_TEXT" />
+            <color const="oxRightRightIco" color="2" title="GUI_ICON" />
+
+            <group title="GUI_GROUP_RIGHT_PRODUCTS">
+                <color const="oxRightProdCl" color="2" title="GUI_TEXT" />
+                <color const="oxRightProdLinkCl" color="2" title="GUI_LINK" />
+                <color const="oxRightProdPicBg" color="0" title="GUI_PICTURE_BG" />
+                <color const="oxRightProdPicBr" color="1" title="GUI_PICTURE_BR" />
+                <color const="oxRightProdToBasketCl" color="2" title="GUI_TOBASKET" />
+                <color const="oxRightFullProdBr" color="1" title="GUI_BORDER" />
+                <color const="oxRightFullActionsCl" color="2" title="GUI_ACTIONS" />
+                <color const="oxRightFullPriceCl" color="2" title="GUI_PRICE" />
+            </group>
+
+            <group title="GUI_GROUP_RIGHT_MINIBASKET">
+                <color const="oxRightMinibasketCl" color="2" title="GUI_TEXT" />
+            </group>
+
+            <group title="GUI_GROUP_RIGHT_MY_ACCOUNT_ACTIONS">
+                <color const="oxRightMyAccountCl" color="2" title="GUI_TEXT" />
+                <color const="oxRightMyAccountLink" color="2" title="GUI_MORE_LINK" />
+            </group>
+        </group>
+        <group title="GUI_GROUP_PATH">
+            <color const="oxPathBg" color="0" title="GUI_BACKGROUND" />
+            <color const="oxPathBr" color="1" title="GUI_BORDER" />
+            <color const="oxPathCl" color="2" title="GUI_TEXT_COLOR" />
+        </group>
+
+        <group title="GUI_GROUP_BODY">
+            <color const="oxPageBg" color="0" title="GUI_PAGE_BACKGROUND" />
+            <color const="oxBodyBg" color="0" title="GUI_BODY_BACKGROUND" />
+            <color const="oxHeadBoxBg" color="0" title="GUI_HEAD_BOX_BACKGROUND" />
+            <color const="oxHeadBoxBr" color="2" title="GUI_HEAD_BOX_BORDER" />
+            <color const="oxHeadBoxCl" color="2" title="GUI_HEAD_BOX_TEXT_COLOR" />
+            <color const="oxBoxHdBg" color="0" title="GUI_HEAD_BACKGROUND" />
+            <color const="oxBoxHdBr" color="2" title="GUI_HEAD_BORDER" />
+            <color const="oxBoxHdCl" color="2" title="GUI_HEAD_TEXT_COLOR" />
+            <color const="oxBoxBg" color="0" title="GUI_BOX_BACKGROUND" />
+            <color const="oxBoxBr" color="2" title="GUI_BOX_BORDER" />
+            <color const="oxBoxCl" color="2" title="GUI_BOX_TEXT_COLOR" />
+            <color const="oxLinkCl" color="2" title="GUI_LINK" />
+            <color const="oxLinkOverCl" color="4" title="GUI_LINK_OVER" />
+            <color const="oxBodyRightIco" color="2" title="GUI_LINK_ICON" />
+            <color const="oxBodyRightIcoTextCl" color="2" title="GUI_LINK_ICON_TEXT" />
+
+
+            <!-- Categories links -->
+            <group title="GUI_GROUP_BODY_CATS_LIST">
+                <color const="oxBodyCatsLinkCl" color="2" title="GUI_LINK" />
+                <color const="oxBodyCatsLinkIco" color="2" title="GUI_ICON" />
+                <color const="oxBodyCatsLinkOverCl" color="4" title="GUI_LINK_OVER" />
+            </group>
+
+            <group title="GUI_GROUP_BODY_BAR_PREVNEXT">
+                <color const="oxBodyPrevNextBg" color="1" title="GUI_BACKGROUND" />
+                <color const="oxBodyPrevNextBr" color="2" title="GUI_BORDER" />
+                <color const="oxBodyPrevNextBtnBg" color="4" title="GUI_BUTTON_BACKGROUND" />
+                <color const="oxBodyPrevNextBtnBr" color="1" title="GUI_BUTTON_BORDER" />
+                <color const="oxBodyPrevNextBtnCl" color="0" title="GUI_BUTTON_TEXT" />
+
+                <color const="oxBodyPrevNextIco" color="0" title="GUI_ICON" />
+                <color const="oxBodyPrevNextDownIco" color="0" title="GUI_ACTIVE_ICON" />
+            </group>
+
+            <group title="GUI_GROUP_BODY_ERRORS">
+                <color const="oxBodyErrorBr" color="2" title="GUI_BORDER" />
+                <color const="oxBodyErrorCl" color="2" title="GUI_TEXT" />
+            </group>
+
+            <group title="GUI_GROUP_BODY_LOCATOR">
+                <color const="oxLocatorBr" color="2" title="GUI_BORDER" />
+                <color const="oxLocatorCl" color="2" title="GUI_TEXT" />
+                <color const="oxLocatorSortIco" color="1" title="GUI_ICON" />
+                <color const="oxLocatorSortActiveIco" color="4" title="GUI_ACTIVE_ICON" />
+                <color const="oxLocatorHdBg" color="1" title="GUI_HEAD_BACKGROUND" />
+                <color const="oxLocatorHdCl" color="2" title="GUI_HEAD_TEXT" />
+                <color const="oxLocatorActiveCl" color="4" title="GUI_ACTIVE" />
+            </group>
+
+            <group title="GUI_GROUP_BODY_PRODUCTS">
+                <color const="oxProductBg" color="0" title="GUI_BACKGROUND" />
+                <color const="oxProductBr" color="2" title="GUI_BORDER" />
+                <color const="oxProductHdBr" color="2" title="GUI_HEAD_BORDER" />
+                <color const="oxProductHdCl" color="2" title="GUI_HEAD_TEXT" />
+                <color const="oxProductHdDsCl" color="2" title="GUI_HEAD_DESC_TEXT" />
+                <color const="oxProductFilledHdBg" color="1" title="GUI_FILLED_HEAD_BACKGROUND" />
+                <color const="oxProductFilledHdBr" color="2" title="GUI_FILLED_HEAD_BORDER" />
+                <color const="oxProductFilledHdCl" color="2" title="GUI_FILLED_HEAD_TEXT" />
+                <color const="oxProductTopHdCl" color="2" title="GUI_HEADER_TOPSHOP_TEXT" />
+                <color const="oxProductTopBr" color="4" title="GUI_HEADER_TOPSHOP_BORDER" />
+                <color const="oxProductTitleCl" color="3" title="GUI_TITLE_TEXT" />
+                <color const="oxProductArtNrCl" color="2" title="GUI_ARTNUM_TEXT" />
+                <color const="oxProductDescCl" color="2" title="GUI_DESC_TEXT" />
+                <color const="oxProductActionsCl" color="2" title="GUI_ACTIONS_TEXT" />
+                <color const="oxProductActionsIco" color="2" title="GUI_ICON" />
+                <color const="oxProductInputLabelCl" color="2" title="GUI_INPUT_LABEL_TEXT" />
+                <color const="oxProductThumbBr" color="1" title="GUI_THUMB_BORDER" />
+                <color const="oxProductThumbBg" color="0" title="GUI_THUMB_BACKGROUND" />
+            </group>
+
+            <group title="GUI_GROUP_BODY_PRODUCT_DETAILS">
+                <color const="oxDetailsHdBg" color="1" title="GUI_HEAD_BACKGROUND" />
+                <color const="oxDetailsHdBr" color="2" title="GUI_HEAD_BORDER" />
+                <color const="oxDetailsHdCl" color="2" title="GUI_HEAD_TEXT" />
+                <color const="oxDetailsTitleCl" color="3" title="GUI_TITLE_TEXT" />
+                <color const="oxDetailsDescCl" color="2" title="GUI_DESC_TEXT" />
+                <color const="oxDetailsExtUrlCl" color="4" title="GUI_EXTERNAL_URL_TEXT" />
+                <color const="oxDetailsCl" color="2" title="GUI_TEXT" />
+                <color const="oxDetailsVendorCl" color="2" title="GUI_VENDOR_TEXT" />
+                <color const="oxDetailsActionsCl" color="2" title="GUI_ACTIONS_TEXT" />
+                <color const="oxDetailsAmountPriceCl" color="2" title="GUI_AMOUNT_PRICE_TEXT" />
+                <color const="oxDetailsBookmarkBr" color="1" title="GUI_BOOKMARK_BORDER" />
+                <color const="oxDetailsThumbBr" color="1" title="GUI_THUMB_BORDER" />
+                <color const="oxDetailsLineCl" color="1" title="GUI_LINE" />
+                <color const="oxDetailsQuestionCl" color="4" title="GUI_QUESTION_ABOUT_PRODUCT" />
+                <color const="oxDetailsAttributesBr" color="1" title="GUI_ATTRIBUTES_BORDER" />
+                <color const="oxDetailsPriceAlarmLabelsCl" color="2" title="GUI_PRICEALARM_LABELS_TEXT" />
+            </group>
+
+            <group title="GUI_GROUP_BODY_GUESTBOOK">
+                <color const="oxGuestbookLine" color="1" title="GUI_GUESTBOOK_LINE" />
+                <color const="oxGuestbookHdCl" color="2" title="GUI_HEAD_TEXT" />
+                <color const="oxGuestbookHdNameCl" color="2" title="GUI_HEAD_NAME_TEXT" />
+            </group>
+
+            <group title="GUI_GROUP_BODY_LINKS">
+                <color const="oxLinksLinkCl" color="2" title="GUI_LINK" />
+                <color const="oxLinksLinkOverCl" color="2" title="GUI_LINK_OVER" />
+            </group>
+
+            <group title="GUI_GROUP_BODY_MORE_CATEGORIES">
+                <color const="oxMoreCatsHdBg" color="1" title="GUI_HEAD_BACKGROUND" />
+                <color const="oxMoreCatsBg" color="1" title="GUI_BACKGROUND" />
+                <color const="oxMoreCl" color="2" title="GUI_TEXT" />
+                <color const="oxMoreBr" color="0" title="GUI_BORDER" />
+                <color const="oxMoreIco" color="2" title="GUI_ICON" />
+            </group>
+
+            <group title="GUI_GROUP_NEWS">
+                <color const="oxNewsTitleCl" color="2" title="GUI_NEWS_TITLE_TEXT" />
+            </group>
+
+            <group title="GUI_GROUP_COMPARE">
+                <color const="oxComparePrevNextCl" color="2" title="GUI_COMPARE_PREVNEXT_TEXT" />
+                <color const="oxComparePrevNextBr" color="2" title="GUI_COMPARE_PREVNEXT_BORDER" />
+                <color const="oxCompareAttributesBr" color="1" title="GUI_COMPARE_ATTRIBUTES_BORDER" />
+            </group>
+
+            <group title="GUI_GROUP_CART">
+                <color const="oxOrderTermsCondCl" color="2" title="GUI_CART_ORDERTERMS_TEXT" />
+                <color const="oxOrderTermsCondLinkCl" color="2" title="GUI_CART_ORDERTERMS_LINK_TEXT" />
+                <color const="oxBasketProdSepLineCl" color="1" title="GUI_CART_BASKET_PROD_SEP_LINE" />
+
+                <group title="GUI_GROUP_ORDERSTEPS">
+                    <color const="oxOrderStepsBg" color="1" title="GUI_ORDERSTEPS_BACKGROUND" />
+                    <color const="oxOrderStepsBr" color="2" title="GUI_ORDERSTEPS_BORDER" />
+                    <color const="oxOrderStepsCl" color="2" title="GUI_ORDERSTEPS_COLOR" />
+                    <color const="oxOrderStepsActiveBg" color="0" title="GUI_ORDERSTEPS_ACTIVE_BACKGROUND" />
+                    <color const="oxOrderStepsActiveCl" color="3" title="GUI_ORDERSTEPS_ACTIVE_COLOR" />
+                </group>
+
+                <group title="GUI_GROUP_ORDER_BASKET">
+                    <color const="oxOrderBasketNoticeCl" color="2" title="GUI_ORDER_BASKET_NOTICE_TEXT" />
+                    <color const="oxOrderBasketCouponCl" color="2" title="GUI_ORDER_BASKET_COUPON_TEXT" />
+                </group>
+            </group>
+
+            <group title="GUI_GROUP_ACCOUNT">
+                <color const="oxAccountHdBr" color="1" title="GUI_BORDER" />
+                <color const="oxAccountHdCl" color="2" title="GUI_TEXT" />
+                <color const="oxAccountHdActiveCl" color="4" title="GUI_ACTIVE_TEXT" />
+                <color const="oxAccountHdDescCl" color="2" title="GUI_DESC_TEXT" />
+            </group>
+
+            <group title="GUI_GROUP_MSG_BOXES">
+                <color const="oxMsgBoxBg" color="0" title="GUI_BACKGROUND" />
+                <color const="oxMsgBoxBr" color="1" title="GUI_BORDER" />
+                <color const="oxMsgBoxCl" color="3" title="GUI_TEXT" />
+                <color const="oxMsgBoxErrCl" color="2" title="GUI_ERROR_TEXT" />
+            </group>
+
+            <group title="GUI_GROUP_BASKET_POPUP">
+                <color const="oxBasketPopupBg" color="0" title="GUI_BACKGROUND" />
+                <color const="oxBasketPopupBr" color="3" title="GUI_BORDER" />
+                <color const="oxBasketPopupBtnBg" color="1" title="GUI_BUTTON_BACKGROUND" />
+                <color const="oxBasketPopupBtnBr" color="2" title="GUI_BUTTON_BORDER" />
+                <color const="oxBasketPopupBtnCl" color="2" title="GUI_BUTTON_TEXT" />
+            </group>
+
+            <group title="GUI_GROUP_ZOOM_POPUP">
+                <color const="oxZoomPopupHeaderBg" color="0" title="GUI_HEAD_BACKGROUND" />
+                <color const="oxZoomPopupBg" color="1" title="GUI_BACKGROUND" />
+                <color const="oxZoomPopupBr" color="3" title="GUI_BORDER" />
+                <color const="oxZoomPopupBtnBg" color="1" title="GUI_BUTTON_BACKGROUND" />
+                <color const="oxZoomPopupBtnBr" color="2" title="GUI_BUTTON_BORDER" />
+                <color const="oxZoomPopupBtnCl" color="2" title="GUI_BUTTON_TEXT" />
+            </group>
+        </group>
+    </css>
+</gui>
