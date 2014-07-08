@@ -3,9 +3,9 @@ OXID Downloads
 
 OXID_ESHOP_CE_4.8.6
 
-> GIT: https://github.com/proudcommerce/oxid-downloads/tree/CE-4.8.5
+> GIT: https://github.com/proudcommerce/oxid-downloads/tree/CE-4.8.6
 
-> ZIP: https://github.com/proudcommerce/oxid-downloads/archive/CE-4.8.5.zip
+> ZIP: https://github.com/proudcommerce/oxid-downloads/archive/CE-4.8.6.zip
 
 
 OXID_ESHOP_CE_4.8.5
