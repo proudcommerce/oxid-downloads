@@ -1,6 +1,14 @@
 OXID Downloads
 -------------------------
 
+OXID_ESHOP_CE_4.9.0
+
+> GIT: https://github.com/proudcommerce/oxid-downloads/tree/CE-4.9.0
+
+> ZIP: https://github.com/proudcommerce/oxid-downloads/archive/CE-4.9.0.zip
+
+================================
+
 OXID_ESHOP_CE_4.8.7
 
 > GIT: https://github.com/proudcommerce/oxid-downloads/tree/CE-4.8.7
@@ -50,6 +58,13 @@ OXID_ESHOP_CE_4.8.0
 > ZIP: https://github.com/proudcommerce/oxid-downloads/archive/CE-4.8.0.zip
 
 ================================
+
+OXID_ESHOP_CE_4.7.13
+
+> GIT: https://github.com/proudcommerce/oxid-downloads/tree/CE-4.7.13
+
+> ZIP: https://github.com/proudcommerce/oxid-downloads/archive/CE-4.7.13.zip
+
 
 OXID_ESHOP_CE_4.7.12
 
