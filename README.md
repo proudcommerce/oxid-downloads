@@ -5,6 +5,13 @@ Browse all OXID Community Editions eShops online or downlaod as ZIP file ...
 
 ##OXID Community Edition 4.9
 
+###OXID_ESHOP_CE_4.9.6
+
+> GIT: https://github.com/proudcommerce/oxid-downloads/tree/CE-4.9.6
+
+> ZIP: https://github.com/proudcommerce/oxid-downloads/archive/CE-4.9.6.zip
+
+
 ###OXID_ESHOP_CE_4.9.5
 
 > GIT: https://github.com/proudcommerce/oxid-downloads/tree/CE-4.9.5
